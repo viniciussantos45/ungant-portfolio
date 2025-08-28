@@ -1,18 +1,24 @@
 import { ArrowUpRightIcon as ArrowUpRight } from "@phosphor-icons/react";
 
-interface PortfolioItem {
+interface MediaItem {
+  src: string;
+}
+
+interface ProjectItem {
   title: string;
   description: string;
   subtitle: string;
   image: string;
+  videos: MediaItem[];
+  photos: MediaItem[];
 }
 
-interface PortfolioCardProps {
-  item: PortfolioItem;
+interface ProjectCardProps {
+  item: ProjectItem;
   index: number;
 }
 
-export default function PortfolioCard({ item, index }: PortfolioCardProps) {
+export default function ProjectCard({ item, index }: ProjectCardProps) {
   return (
     <div key={index} className="group cursor-pointer">
       <div className="relative overflow-hidden rounded-2xl bg-white/90 backdrop-blur-sm">
