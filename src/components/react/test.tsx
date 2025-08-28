@@ -1,19 +1,13 @@
 "use client";
 
 import {
+  ArrowDownIcon,
   ArrowUpRightIcon as ArrowUpRight,
-  ListIcon as Menu,
-  XIcon as X,
 } from "@phosphor-icons/react";
-
-import Logo from "../../assets/logotipo-black.svg";
-
-import { useState } from "react";
 import { Button } from "../ui/button";
+import Nav from "./nav";
 
 export default function TestReactComponent() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const portfolioItems = [
     {
       title: "URBAN FAIRYTALE",
@@ -55,144 +49,18 @@ export default function TestReactComponent() {
 
       {/* Content Overlay */}
       <div className="relative z-10">
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center justify-between p-6 lg:p-8">
-          <img src={Logo.src} alt="Logo" className="h-6" />
-          <div className="flex items-center gap-8">
-            <a
-              href="#portfolio"
-              className="text-black hover:text-gray-600 transition-colors"
-            >
-              PORTFOLIO
-            </a>
-            <a
-              href="#about"
-              className="bg-foreground text-primary px-4 py-2 rounded-full hover:bg-foreground/80 transition-colors"
-            >
-              ABOUT ME
-            </a>
-            <a
-              href="#services"
-              className="text-black hover:text-gray-600 transition-colors"
-            >
-              SERVICES
-            </a>
-            <a
-              href="#contacts"
-              className="text-black hover:text-gray-600 transition-colors"
-            >
-              CONTACTS
-            </a>
-            <a
-              href="#faq"
-              className="text-black hover:text-gray-600 transition-colors"
-            >
-              FAQ
-            </a>
-          </div>
-        </nav>
-
-        {/* Mobile Navigation */}
-        <nav className="md:hidden flex items-center justify-between p-4">
-          <div className="text-xl font-bold text-black">STRAY</div>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsMobileMenuOpen(true)}
-            className="text-black hover:bg-white/20"
-          >
-            <Menu className="h-6 w-6" />
-          </Button>
-        </nav>
-
-        {/* Mobile Menu Overlay */}
-        {isMobileMenuOpen && (
-          <div className="fixed inset-0 bg-yellow-400 z-50 p-6">
-            <div className="flex items-center justify-between mb-12">
-              <div className="text-xl font-bold text-black">STRAY</div>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-black hover:bg-black/10"
-              >
-                <X className="h-6 w-6" />
-              </Button>
-            </div>
-
-            <div className="flex flex-col gap-8 text-center">
-              <a
-                href="#portfolio"
-                className="text-4xl font-bold text-black"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                PORTFOLIO
-              </a>
-              <a
-                href="#about"
-                className="text-4xl font-bold text-black"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                ABOUT ME
-              </a>
-              <a
-                href="#services"
-                className="text-4xl font-bold text-black"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                SERVICES
-              </a>
-              <a
-                href="#contacts"
-                className="text-4xl font-bold text-black"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                CONTACTS
-              </a>
-              <a
-                href="#faq"
-                className="text-4xl font-bold text-black"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                FAQ
-              </a>
-            </div>
-
-            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2">
-              <Button className="bg-pink-400 hover:bg-pink-300 text-black px-8 py-3 rounded-full text-lg font-medium">
-                ↓ CATCH THE VIBE
-              </Button>
-            </div>
-
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4">
-              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">f</span>
-              </div>
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">ig</span>
-              </div>
-              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">tt</span>
-              </div>
-              <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">Be</span>
-              </div>
-              <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">P</span>
-              </div>
-            </div>
-          </div>
-        )}
+        <Nav />
 
         {/* Main Content */}
         <div className="px-4 lg:px-8 pb-8">
           {/* Hero Section */}
           <div className="text-center mb-12 lg:mb-16">
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-black leading-none mb-8">
-              STRAY MOMENTS
+            <h1 className="text-6xl md:text-8xl lg:text-6xl font-black text-primary leading-none mb-8">
+              HISTÓRIAS VISUAIS PODEROSAS
             </h1>
-            <Button className="bg-foreground hover:bg-foreground/80 text-primary px-8 py-3 rounded-full text-lg font-medium">
-              ↓ CATCH THE VIBE
+            <Button className="bg-foreground hover:bg-foreground/80 text-primary px-8 py-3 text-lg font-medium">
+              <ArrowDownIcon className="inline-block" />
+              CONFIRA NOSSO TRAMPO
             </Button>
           </div>
 
