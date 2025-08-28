@@ -1,10 +1,14 @@
 import { useState } from "react";
-import Logo from "../../assets/logotipo-black.svg";
+import Logo from "../../assets/logotipo-orange.svg";
 import { Button } from "../ui/button";
 
 import { ListIcon as Menu, XIcon as X } from "@phosphor-icons/react";
 
-export default function Nav() {
+interface NavProps {
+  currentPath?: string;
+}
+
+export default function Nav({ currentPath = "/" }: NavProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -12,37 +16,29 @@ export default function Nav() {
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center justify-between p-6 lg:p-8">
         <img src={Logo.src} alt="Logo" className="h-6" />
-        <div className="flex items-center gap-8">
-          <a
-            href="#portfolio"
-            className="text-secondary hover:text-gray-600 transition-colors"
+        <div className="flex items-center gap-2">
+          <Button
+            asChild
+            variant={
+              currentPath === "/projetos" || currentPath === "/"
+                ? "default"
+                : "ghost"
+            }
           >
-            PORTFOLIO
-          </a>
-          <a
-            href="#about"
-            className="rounded-md bg-foreground text-primary px-4 py-2 hover:bg-foreground/80 transition-colors"
+            <a href="/projetos">PROJETOS</a>
+          </Button>
+          <Button
+            asChild
+            variant={currentPath === "/sobre-nos" ? "default" : "ghost"}
           >
-            ABOUT ME
-          </a>
-          <a
-            href="#services"
-            className="text-secondary hover:text-gray-600 transition-colors"
+            <a href="/sobre-nos">SOBRE NÓS</a>
+          </Button>
+          <Button
+            asChild
+            variant={currentPath === "/contato" ? "default" : "ghost"}
           >
-            SERVICES
-          </a>
-          <a
-            href="#contacts"
-            className="text-secondary hover:text-gray-600 transition-colors"
-          >
-            CONTACTS
-          </a>
-          <a
-            href="#faq"
-            className="text-secondary hover:text-gray-600 transition-colors"
-          >
-            FAQ
-          </a>
+            <a href="/contato">CONTATO</a>
+          </Button>
         </div>
       </nav>
 
@@ -78,39 +74,33 @@ export default function Nav() {
 
           <div className="flex flex-col gap-8 text-center">
             <a
-              href="#portfolio"
-              className="text-4xl font-bold text-secondary"
+              href="/projetos"
+              className={`text-4xl font-bold transition-colors ${
+                currentPath === "/projetos" || currentPath === "/"
+                  ? "text-primary"
+                  : "text-secondary"
+              }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              PORTFOLIO
+              PROJETOS
             </a>
             <a
-              href="#about"
-              className="text-4xl font-bold text-secondary"
+              href="/sobre-nos"
+              className={`text-4xl font-bold transition-colors ${
+                currentPath === "/sobre-nos" ? "text-primary" : "text-secondary"
+              }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              ABOUT ME
+              SOBRE NÓS
             </a>
             <a
-              href="#services"
-              className="text-4xl font-bold text-secondary"
+              href="/contato"
+              className={`text-4xl font-bold transition-colors ${
+                currentPath === "/contato" ? "text-primary" : "text-secondary"
+              }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              SERVICES
-            </a>
-            <a
-              href="#contacts"
-              className="text-4xl font-bold text-secondary"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              CONTACTS
-            </a>
-            <a
-              href="#faq"
-              className="text-4xl font-bold text-secondary"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              FAQ
+              CONTATO
             </a>
           </div>
 

@@ -1,11 +1,13 @@
 ---
 import Layout from './Layout.astro';
 import Nav from '../components/react/nav';
+
+const currentPath = Astro.url.pathname;
 ---
 
 <Layout>
   <div class="min-h-screen relative overflow-hidden">
-    <Nav client:load />
+    <Nav client:load currentPath={currentPath} />
     <main class="relative z-10">
       <slot />
     </main>

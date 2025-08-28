@@ -14,26 +14,24 @@ export default function ProjectShowcase() {
       photos: [
         { src: "/projects/first/two.jpg" },
         { src: "/projects/first/two-alt1.jpg" },
-        { src: "/projects/first/two-alt2.jpg" }
+        { src: "/projects/first/two-alt2.jpg" },
       ],
     },
     {
-      title: "STREET SERENITY", 
+      title: "STREET SERENITY",
       description: "EVERYDAY MOMENTS BECOME CINEMATIC FRAMES",
       subtitle:
         "SHADOWS AND LIGHT WEAVING A MODERN MYTH SOFTER THAN SILK THE CITY SPEAKS",
       image: "/projects/first/one.jpg",
       videos: [
         { src: "/projects/first/street-serenity.mp4" },
-        { src: "/projects/first/street-serenity-alt.mp4" }
+        { src: "/projects/first/street-serenity-alt.mp4" },
       ],
-      photos: [
-        { src: "/projects/first/one.jpg" }
-      ],
+      photos: [{ src: "/projects/first/one.jpg" }],
     },
     {
       title: "LOST IN THE CROWD",
-      description: "SOLITUDE IN THE NOISE", 
+      description: "SOLITUDE IN THE NOISE",
       subtitle: "A CALM MOMENT AMONG COUNTLESS FACES",
       image: "/projects/first/three.jpg",
       videos: [],
@@ -41,7 +39,7 @@ export default function ProjectShowcase() {
         { src: "/projects/first/three.jpg" },
         { src: "/projects/first/three-alt1.jpg" },
         { src: "/projects/first/three-alt2.jpg" },
-        { src: "/projects/first/three-alt3.jpg" }
+        { src: "/projects/first/three-alt3.jpg" },
       ],
     },
     {
@@ -51,11 +49,11 @@ export default function ProjectShowcase() {
       image: "/projects/first/four.jpg",
       videos: [
         { src: "/projects/first/city-soul-main.mp4" },
-        { src: "/projects/first/city-soul-behind-scenes.mp4" }
+        { src: "/projects/first/city-soul-behind-scenes.mp4" },
       ],
       photos: [
         { src: "/projects/first/four.jpg" },
-        { src: "/projects/first/four-bts1.jpg" }
+        { src: "/projects/first/four-bts1.jpg" },
       ],
     },
   ];
@@ -65,10 +63,10 @@ export default function ProjectShowcase() {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/blurred-street-scene.png')",
-          filter: "blur(2px) brightness(0.7)",
-        }}
+        // style={{
+        //   backgroundImage: "url('/blurred-street-scene.png')",
+        //   filter: "blur(2px) brightness(0.7)",
+        // }}
       />
 
       {/* Main Content */}
