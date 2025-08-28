@@ -1,0 +1,13 @@
+---
+import Layout from './Layout.astro';
+import Nav from '../components/react/nav';
+---
+
+<Layout>
+  <div class="min-h-screen relative overflow-hidden">
+    <Nav client:load />
+    <main class="relative z-10">
+      <slot />
+    </main>
+  </div>
+</Layout>

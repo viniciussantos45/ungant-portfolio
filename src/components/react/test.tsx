@@ -5,7 +5,6 @@ import {
   ArrowUpRightIcon as ArrowUpRight,
 } from "@phosphor-icons/react";
 import { Button } from "../ui/button";
-import Nav from "./nav";
 
 export default function TestReactComponent() {
   const portfolioItems = [
@@ -37,7 +36,7 @@ export default function TestReactComponent() {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <>
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -47,12 +46,8 @@ export default function TestReactComponent() {
         }}
       />
 
-      {/* Content Overlay */}
-      <div className="relative z-10">
-        <Nav />
-
-        {/* Main Content */}
-        <div className="px-4 lg:px-8 pb-8">
+      {/* Main Content */}
+      <div className="px-4 lg:px-8 pb-8 relative z-10">
           {/* Hero Section */}
           <div className="text-center mb-12 lg:mb-16">
             <h1 className="text-6xl md:text-8xl lg:text-6xl font-black text-primary leading-none mb-8">
@@ -96,7 +91,6 @@ export default function TestReactComponent() {
             ))}
           </div>
         </div>
-      </div>
-    </div>
+    </>
   );
 }
