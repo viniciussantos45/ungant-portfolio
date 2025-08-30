@@ -52,24 +52,28 @@ This is an Astro-based portfolio website for Ungant, featuring a modern design w
 ### Key Components
 
 #### Layout Components
-- **PrincipalLayout** (`src/layouts/PrincipalLayout.astro`) - Main layout with integrated navigation
-- **Nav** (`src/components/react/nav.tsx`) - Responsive navigation with mobile menu overlay
+- **PrincipalLayout** (`src/layouts/PrincipalLayout.astro`) - Main layout with integrated navigation and server-side path detection
+- **Layout** (`src/layouts/Layout.astro`) - Base HTML layout with dark mode support and transition animations
+- **Nav** (`src/components/react/nav.tsx`) - Responsive navigation with active page highlighting using Button components
 
 #### Project Showcase Components
-- **ProjectShowcase** (`src/components/react/ProjectShowcase.tsx`) - Main container for project display
-- **HeroSection** (`src/components/react/HeroSection.tsx`) - Hero section with main title and CTA
+- **ProjectShowcase** (`src/components/react/ProjectShowcase.tsx`) - Main container with background styling (background image disabled)
+- **HeroSection** (`src/components/react/HeroSection.tsx`) - Hero section using Button component for CTA
 - **ProjectGrid** (`src/components/react/ProjectGrid.tsx`) - Grid layout container for projects
 - **ProjectCard** (`src/components/react/ProjectCard.tsx`) - Individual project card with media preview
 
 #### UI Components
-- **Button** (`src/components/ui/button.tsx`) - Styled button component with variants
+- **Button** (`src/components/ui/button.tsx`) - Styled button component with variants (used throughout navigation and CTAs)
 
 ### Styling Approach
 - Uses Tailwind CSS 4.x with Vite plugin integration
 - Custom CSS variables defined in `src/styles/global.css` for theming
+- **Dark mode support** with class-based theming (`class="dark"` on html element)
 - Design system includes primary/secondary colors, shadows, and spacing
 - Responsive design with mobile-first approach
-- Custom color scheme with yellow/orange primary colors
+- **Orange logo variant** used in navigation (`logotipo-orange.svg`)
+- **Backdrop blur effects** used in page sections for visual depth
+- **Smooth transitions** with duration-500 for color changes
 
 ### React Integration
 - Components use `client:load` directive for hydration
@@ -116,4 +120,15 @@ interface ProjectItem {
 ### Navigation System
 - **Responsive Design**: Desktop horizontal nav + mobile overlay menu
 - **Clean Routes**: `/projetos`, `/sobre-nos`, `/contato`
+- **Active Page Highlighting**: Server-side path detection with instant visual feedback
+- **Button-Based Navigation**: Uses Button component with `default`/`ghost` variants for active/inactive states
+- **Performance Optimized**: No client-side path detection, eliminates flash/delay on page load
 - **Consistent Styling**: Matches design system across all states
+
+### Recent Technical Improvements
+- **Server-Side Navigation**: PrincipalLayout passes `Astro.url.pathname` to Nav component
+- **Component Consistency**: Button component used throughout (navigation, CTAs, forms)
+- **Dark Mode Integration**: Full dark mode support with smooth transitions
+- **Background Optimization**: ProjectShowcase background image disabled for performance
+- **Form Styling**: Contact page uses consistent Button styling
+- **Logo Update**: Navigation uses orange logo variant for better visual hierarchy
