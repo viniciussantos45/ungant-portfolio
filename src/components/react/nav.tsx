@@ -22,20 +22,20 @@ export default function Nav({ currentPath = "/" }: NavProps) {
             variant={
               currentPath === "/projetos" || currentPath === "/"
                 ? "default"
-                : "ghost"
+                : "outline"
             }
           >
             <a href="/projetos">PROJETOS</a>
           </Button>
           <Button
             asChild
-            variant={currentPath === "/sobre-nos" ? "default" : "ghost"}
+            variant={currentPath === "/sobre-nos" ? "default" : "outline"}
           >
             <a href="/sobre-nos">SOBRE NÓS</a>
           </Button>
           <Button
             asChild
-            variant={currentPath === "/contato" ? "default" : "ghost"}
+            variant={currentPath === "/contato" ? "default" : "outline"}
           >
             <a href="/contato">CONTATO</a>
           </Button>
