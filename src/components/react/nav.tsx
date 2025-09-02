@@ -1,4 +1,5 @@
 import { useState } from "react";
+import LogoBlack from "../../assets/logotipo-black.svg";
 import Logo from "../../assets/logotipo-orange.svg";
 import { Button } from "../ui/button";
 
@@ -59,9 +60,9 @@ export default function Nav({ currentPath = "/" }: NavProps) {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-primary z-50 p-6 border-8 border-white">
-          <div className="flex items-center justify-between mb-12">
-            <img src={Logo.src} alt="Logo" className="h-6" />
+        <div className="fixed inset-0 flex flex-col justify-between p-6 bg-primary z-50 border-8 border-white">
+          <div className="flex items-center justify-between ">
+            <img src={LogoBlack.src} alt="Logo" className="h-6" />
             <Button
               variant="ghost"
               size="icon"
@@ -72,12 +73,12 @@ export default function Nav({ currentPath = "/" }: NavProps) {
             </Button>
           </div>
 
-          <div className="flex flex-col gap-8 text-center">
+          <div className="flex justify-between flex-col gap-8 text-center">
             <a
               href="/projetos"
               className={`text-4xl font-bold transition-colors ${
                 currentPath === "/projetos" || currentPath === "/"
-                  ? "text-primary"
+                  ? "text-primary-foreground"
                   : "text-secondary"
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
@@ -87,7 +88,9 @@ export default function Nav({ currentPath = "/" }: NavProps) {
             <a
               href="/sobre-nos"
               className={`text-4xl font-bold transition-colors ${
-                currentPath === "/sobre-nos" ? "text-primary" : "text-secondary"
+                currentPath === "/sobre-nos"
+                  ? "text-primary-foreground"
+                  : "text-secondary"
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -96,7 +99,9 @@ export default function Nav({ currentPath = "/" }: NavProps) {
             <a
               href="/contato"
               className={`text-4xl font-bold transition-colors ${
-                currentPath === "/contato" ? "text-primary" : "text-secondary"
+                currentPath === "/contato"
+                  ? "text-primary-foreground"
+                  : "text-secondary"
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -104,13 +109,7 @@ export default function Nav({ currentPath = "/" }: NavProps) {
             </a>
           </div>
 
-          <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2">
-            <Button className="bg-pink-400 hover:bg-pink-300 text-secondary px-8 py-3 text-lg font-medium">
-              ↓ CATCH THE VIBE
-            </Button>
-          </div>
-
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4">
+          <div className="flex justify-between">
             <div className="w-12 h-12 bg-blue-600 flex items-center justify-center">
               <span className="text-white font-bold">f</span>
             </div>
