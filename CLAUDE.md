@@ -121,9 +121,10 @@ interface ProjectItem {
 - **Responsive Design**: Desktop horizontal nav + mobile overlay menu
 - **Clean Routes**: `/projetos`, `/sobre-nos`, `/contato`
 - **Active Page Highlighting**: Server-side path detection with instant visual feedback
-- **Button-Based Navigation**: Uses Button component with `default`/`ghost` variants for active/inactive states
+- **Button-Based Navigation**: Uses Button component with `default`/`outline` variants for active/inactive states
 - **Performance Optimized**: No client-side path detection, eliminates flash/delay on page load
 - **Consistent Styling**: Matches design system across all states
+- **Mobile Menu Enhancement**: Improved mobile overlay layout with proper logo positioning and contrast
 
 ### Recent Technical Improvements
 - **Server-Side Navigation**: PrincipalLayout passes `Astro.url.pathname` to Nav component
@@ -131,4 +132,7 @@ interface ProjectItem {
 - **Dark Mode Integration**: Full dark mode support with smooth transitions
 - **Background Optimization**: ProjectShowcase background image disabled for performance
 - **Form Styling**: Contact page uses consistent Button styling
-- **Logo Update**: Navigation uses orange logo variant for better visual hierarchy
+- **Logo System**: Desktop navigation uses orange logo variant, mobile overlay uses black logo for contrast
+- **Button Variant Update**: Navigation buttons now use 'outline' variant for inactive states (better visual hierarchy)
+- **Mobile Navigation Redesign**: Enhanced mobile overlay with improved layout, logo contrast, and removed bottom CTA
+- **Color System Refinement**: Updated secondary color variable for better contrast and readability
