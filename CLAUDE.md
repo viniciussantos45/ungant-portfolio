@@ -125,6 +125,8 @@ interface ProjectItem {
 - **Performance Optimized**: No client-side path detection, eliminates flash/delay on page load
 - **Consistent Styling**: Matches design system across all states
 - **Mobile Menu Enhancement**: Improved mobile overlay layout with proper logo positioning and contrast
+- **Fixed Position**: Navigation stays fixed at top with backdrop blur for modern glass effect
+- **Proper Z-Index**: Navigation at z-40, mobile overlay at z-50 for correct layering
 
 ### Recent Technical Improvements
 - **Server-Side Navigation**: PrincipalLayout passes `Astro.url.pathname` to Nav component
@@ -136,3 +138,6 @@ interface ProjectItem {
 - **Button Variant Update**: Navigation buttons now use 'outline' variant for inactive states (better visual hierarchy)
 - **Mobile Navigation Redesign**: Enhanced mobile overlay with improved layout, logo contrast, and removed bottom CTA
 - **Color System Refinement**: Updated secondary color variable for better contrast and readability
+- **Fixed Navigation Enhancement**: Added fixed positioning with backdrop blur effect and semi-transparent background
+- **Layout Spacing Updates**: Added proper padding-top to main content (pt-20 mobile, pt-36 desktop) to account for fixed navigation
+- **Page Layout Optimization**: Removed redundant padding from contato and sobre-nos pages as spacing is now handled by layout
