@@ -15,7 +15,7 @@ export default function Nav({ currentPath = "/" }: NavProps) {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex items-center justify-between p-6 lg:p-8">
+      <nav className="hidden md:flex items-center justify-between p-6 fixed top-0 left-0 right-0 backdrop-blur-md bg-background/80 border-b border-border/50 z-40">
         <img src={Logo.src} alt="Logo" className="h-6" />
         <div className="flex items-center gap-2">
           <Button
@@ -44,7 +44,7 @@ export default function Nav({ currentPath = "/" }: NavProps) {
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="md:hidden flex items-center justify-between p-4">
+      <nav className="md:hidden flex items-center justify-between p-4 fixed top-0 left-0 right-0 backdrop-blur-md bg-background/80 border-b border-border/50 z-40">
         <img src={Logo.src} alt="Logo" className="h-6" />
         <Button
           variant="ghost"
