@@ -1,0 +1,33 @@
+---
+import ImagesGallery from "../components/ui/images-gallery";
+import PrincipalLayout from "../layouts/PrincipalLayout.astro";
+---
+
+<PrincipalLayout>
+  <ImagesGallery
+    client:load
+    images={[
+      {
+        title: "Image 1",
+        description: "Description for Image 1",
+        src: "projects/first/one.jpg",
+        thumb: "projects/first/one.jpg",
+        alt: "img1",
+      },
+      {
+        title: "Image 2",
+        description: "Description for Image 2",
+        src: "projects/first/two.jpg",
+        thumb: "projects/first/two.jpg",
+        alt: "img2",
+      },
+      // { //TODO: add video
+      //   title: "Image 2",
+      //   description: "Description for Image 2",
+      //   src: "projects/first/video-bla.mp4",
+      //   thumb: "projects/first/two.jpg",
+      //   alt: "img2",
+      // },
+    ]}
+  />
+</PrincipalLayout>
