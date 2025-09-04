@@ -29,7 +29,7 @@ This is an Astro-based portfolio website for Ungant, featuring a modern design w
 - `src/pages/projetos.astro` - Projects page (dedicated project showcase)
 - `src/pages/sobre-nos.astro` - About us page with company information
 - `src/pages/contato.astro` - Contact page with form and contact details
-- `src/pages/gallery.astro` - Gallery page with LightGallery integration for enhanced media viewing
+- `src/pages/gallery/[id].astro` - Dynamic gallery route for individual projects with separate image and video sections
 
 #### Layouts
 - `src/layouts/Layout.astro` - Base HTML layout with global styles
@@ -45,7 +45,11 @@ This is an Astro-based portfolio website for Ungant, featuring a modern design w
   - `ProjectCard.tsx` - Individual project card component
 - `src/components/ui/` - Reusable UI components
   - `button.tsx` - Styled button component with variants
-  - `images-gallery.tsx` - LightGallery React component for enhanced image/video display with zoom, thumbnails, and video support
+  - `images-gallery.tsx` - LightGallery React component for images with responsive grid layout
+  - `videos-gallery.tsx` - LightGallery React component for HTML5 videos with responsive grid layout
+
+#### Data Layer
+- `src/data/projects.ts` - Centralized project data with TypeScript interfaces for all project information
 
 #### Assets & Styles
 - `src/styles/global.css` - Global styles with CSS custom properties
@@ -68,7 +72,8 @@ This is an Astro-based portfolio website for Ungant, featuring a modern design w
 
 #### UI Components
 - **Button** (`src/components/ui/button.tsx`) - Styled button component with variants (used throughout navigation and CTAs)
-- **ImagesGallery** (`src/components/ui/images-gallery.tsx`) - LightGallery React component with plugins for thumbnails, zoom, and video support; handles both images and videos with enhanced viewing experience
+- **ImagesGallery** (`src/components/ui/images-gallery.tsx`) - LightGallery React component for images with responsive grid layout, zoom, and thumbnail support
+- **VideosGallery** (`src/components/ui/videos-gallery.tsx`) - LightGallery React component for HTML5 videos with responsive grid layout and proper video handling
 
 ### Styling Approach
 - Uses Tailwind CSS 4.x with Vite plugin integration
@@ -93,13 +98,14 @@ This is an Astro-based portfolio website for Ungant, featuring a modern design w
 - Project structure supports both video (.mp4) and photo (.jpg) assets
 
 ### Project Data Structure
-Each project contains:
+Projects are centrally managed in `src/data/projects.ts` with TypeScript interfaces:
 ```typescript
 interface MediaItem {
   src: string;
 }
 
-interface ProjectItem {
+export interface ProjectItem {
+  id: string;           // Unique identifier for routing
   title: string;
   description: string;
   subtitle: string;
@@ -109,6 +115,11 @@ interface ProjectItem {
 }
 ```
 
+#### Project Navigation
+- **Clickable Project Cards**: Each project card navigates to `/gallery/{project-id}` when clicked
+- **Dynamic Routing**: Individual project galleries accessible via `/gallery/[id]` route
+- **Static Generation**: Uses Astro's `getStaticPaths()` for optimal performance
+
 ### Component Architecture
 - **Modular Design**: Components are broken down by responsibility
 - **Type Safety**: Full TypeScript interfaces for all data structures
@@ -117,11 +128,18 @@ interface ProjectItem {
 - **Layout Separation**: Navigation and content are properly separated at layout level
 
 ### Page Structure
-- **Home (/)**: Landing page with ProjectShowcase component
+- **Home (/)**: Landing page with ProjectShowcase component and clickable project cards
 - **Projetos (/projetos)**: Dedicated projects page showcasing all video/photo work
 - **Sobre Nós (/sobre-nos)**: About page with company mission and story
 - **Contato (/contato)**: Contact page with form and contact information
-- **Gallery (/gallery)**: Enhanced gallery page with LightGallery for interactive media viewing experience
+- **Dynamic Gallery (/gallery/[id])**: Individual project galleries with separate image and video sections
+
+#### Gallery System
+- **Separate Media Sections**: Each project gallery has distinct "Photos" and "Videos" sections
+- **LightGallery Integration**: Both sections use LightGallery for consistent user experience
+- **Images Section**: Grid layout with square aspect ratio, zoom and thumbnail features
+- **Videos Section**: Grid layout with video aspect ratio, HTML5 video support with proper `data-video` configuration
+- **Responsive Design**: Both galleries adapt to different screen sizes (1-4 columns)
 
 ### Navigation System
 - **Responsive Design**: Desktop horizontal nav + mobile overlay menu
@@ -148,4 +166,8 @@ interface ProjectItem {
 - **Layout Spacing Updates**: Added proper padding-top to main content (pt-20 mobile, pt-36 desktop) to account for fixed navigation
 - **Page Layout Optimization**: Removed redundant padding from contato and sobre-nos pages as spacing is now handled by layout
 - **LightGallery Integration**: Added LightGallery 2.9.0-beta.1 for enhanced image and video display with zoom, thumbnails, and video support
-- **Gallery Page Implementation**: New gallery page (`/gallery`) with ImagesGallery component for interactive media viewing experience
+- **Dynamic Gallery System**: Implemented `/gallery/[id]` routes with centralized project data and separate image/video sections
+- **Project Data Centralization**: Created `src/data/projects.ts` for centralized project management with TypeScript interfaces
+- **Component Refactoring**: Refactored ProjectCard, ProjectGrid, and ProjectShowcase to use centralized data
+- **Enhanced Video Support**: Fixed LightGallery video configuration using proper `data-video` attributes (removed conflicting `data-src`)
+- **Responsive Gallery Layouts**: Both image and video galleries use responsive grid systems optimized for different media types
