@@ -1,17 +1,5 @@
 import { ArrowUpRightIcon as ArrowUpRight } from "@phosphor-icons/react";
-
-interface MediaItem {
-  src: string;
-}
-
-interface ProjectItem {
-  title: string;
-  description: string;
-  subtitle: string;
-  image: string;
-  videos: MediaItem[];
-  photos: MediaItem[];
-}
+import { type ProjectItem } from "../../data/projects";
 
 interface ProjectCardProps {
   item: ProjectItem;
@@ -19,8 +7,12 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ item, index }: ProjectCardProps) {
+  const handleClick = () => {
+    window.location.href = `/gallery/${item.id}`;
+  };
+
   return (
-    <div key={index} className="group cursor-pointer">
+    <div key={index} className="group cursor-pointer" onClick={handleClick}>
       <div className="relative overflow-hidden rounded-2xl bg-white/90 backdrop-blur-sm">
         <div className="aspect-[3/4] relative">
           <img

@@ -30,21 +30,29 @@ export default function ImagesGallery({ images }: ImagesGalleryProps) {
     console.log("lightGallery has been initialized");
   };
   return (
-    <div className="App">
+    <div className="images-gallery">
       <LightGallery
         onInit={onInit}
         speed={500}
         plugins={[lgThumbnail, lgZoom, lgVideo]}
+        selector=".gallery-item"
       >
-        {images.map((image) => (
-          <a
-            key={image.src}
-            data-src={image.src}
-            data-sub-html={`<h4>${image.title}</h4><p>${image.description}</p>`}
-          >
-            <img alt={image.alt} src={image.thumb} />
-          </a>
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {images.map((image, index) => (
+            <a
+              key={`${image.src}-${index}`}
+              className="gallery-item cursor-pointer block rounded-lg overflow-hidden aspect-square bg-gray-100 hover:shadow-lg transition-shadow duration-200"
+              data-src={image.src}
+              data-sub-html={`<h4>${image.title}</h4><p>${image.description}</p>`}
+            >
+              <img 
+                alt={image.alt} 
+                src={image.thumb} 
+                className="w-full h-full object-cover"
+              />
+            </a>
+          ))}
+        </div>
       </LightGallery>
     </div>
   );
