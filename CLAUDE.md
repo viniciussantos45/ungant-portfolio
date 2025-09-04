@@ -19,6 +19,7 @@ This is an Astro-based portfolio website for Ungant, featuring a modern design w
 - **Styling**: Tailwind CSS 4.1.12 with custom CSS variables
 - **Icons**: Phosphor Icons React
 - **UI Components**: Custom components using Radix UI primitives
+- **Gallery**: LightGallery 2.9.0-beta.1 for enhanced image and video display
 - **Package Manager**: pnpm (lockfile present)
 
 ### Project Structure
@@ -28,6 +29,7 @@ This is an Astro-based portfolio website for Ungant, featuring a modern design w
 - `src/pages/projetos.astro` - Projects page (dedicated project showcase)
 - `src/pages/sobre-nos.astro` - About us page with company information
 - `src/pages/contato.astro` - Contact page with form and contact details
+- `src/pages/gallery.astro` - Gallery page with LightGallery integration for enhanced media viewing
 
 #### Layouts
 - `src/layouts/Layout.astro` - Base HTML layout with global styles
@@ -41,7 +43,9 @@ This is an Astro-based portfolio website for Ungant, featuring a modern design w
   - `HeroSection.tsx` - Hero section with title and CTA
   - `ProjectGrid.tsx` - Grid layout for project cards
   - `ProjectCard.tsx` - Individual project card component
-- `src/components/ui/` - Reusable UI components (button.tsx)
+- `src/components/ui/` - Reusable UI components
+  - `button.tsx` - Styled button component with variants
+  - `images-gallery.tsx` - LightGallery React component for enhanced image/video display with zoom, thumbnails, and video support
 
 #### Assets & Styles
 - `src/styles/global.css` - Global styles with CSS custom properties
@@ -64,6 +68,7 @@ This is an Astro-based portfolio website for Ungant, featuring a modern design w
 
 #### UI Components
 - **Button** (`src/components/ui/button.tsx`) - Styled button component with variants (used throughout navigation and CTAs)
+- **ImagesGallery** (`src/components/ui/images-gallery.tsx`) - LightGallery React component with plugins for thumbnails, zoom, and video support; handles both images and videos with enhanced viewing experience
 
 ### Styling Approach
 - Uses Tailwind CSS 4.x with Vite plugin integration
@@ -116,6 +121,7 @@ interface ProjectItem {
 - **Projetos (/projetos)**: Dedicated projects page showcasing all video/photo work
 - **Sobre Nós (/sobre-nos)**: About page with company mission and story
 - **Contato (/contato)**: Contact page with form and contact information
+- **Gallery (/gallery)**: Enhanced gallery page with LightGallery for interactive media viewing experience
 
 ### Navigation System
 - **Responsive Design**: Desktop horizontal nav + mobile overlay menu
@@ -141,3 +147,5 @@ interface ProjectItem {
 - **Fixed Navigation Enhancement**: Added fixed positioning with backdrop blur effect and semi-transparent background
 - **Layout Spacing Updates**: Added proper padding-top to main content (pt-20 mobile, pt-36 desktop) to account for fixed navigation
 - **Page Layout Optimization**: Removed redundant padding from contato and sobre-nos pages as spacing is now handled by layout
+- **LightGallery Integration**: Added LightGallery 2.9.0-beta.1 for enhanced image and video display with zoom, thumbnails, and video support
+- **Gallery Page Implementation**: New gallery page (`/gallery`) with ImagesGallery component for interactive media viewing experience
