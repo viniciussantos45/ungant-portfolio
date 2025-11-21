@@ -15,28 +15,31 @@ export default function Nav({ currentPath = "/" }: NavProps) {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex items-center justify-between p-6 fixed top-0 left-0 right-0 backdrop-blur-md bg-background/80 border-b border-border/50 z-40">
-        <img src={Logo.src} alt="Logo" className="h-6" />
-        <div className="flex items-center gap-2">
+      <nav className="hidden md:flex items-center justify-between fixed top-0 left-0 right-0 backdrop-blur-md bg-background/80 border-b border-border/50 z-40">
+        <img src={Logo.src} alt="Logo" className="h-4 px-5" />
+        <div className="flex items-center">
           <Button
             asChild
+            size="lg"
             variant={
               currentPath === "/projetos" || currentPath === "/"
                 ? "default"
-                : "outline"
+                : "secondary"
             }
           >
             <a href="/projetos">PROJETOS</a>
           </Button>
           <Button
             asChild
-            variant={currentPath === "/sobre-nos" ? "default" : "outline"}
+            size="lg"
+            variant={currentPath === "/sobre-nos" ? "default" : "secondary"}
           >
             <a href="/sobre-nos">SOBRE NÓS</a>
           </Button>
           <Button
             asChild
-            variant={currentPath === "/contato" ? "default" : "outline"}
+            size="lg"
+            variant={currentPath === "/contato" ? "default" : "secondary"}
           >
             <a href="/contato">CONTATO</a>
           </Button>

@@ -15,6 +15,9 @@ import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgVideo from "lightgallery/plugins/video";
 import lgZoom from "lightgallery/plugins/zoom";
 
+import useEmblaCarousel from "embla-carousel-react";
+import Carousel from "./carousel";
+
 interface ImagesGalleryProps {
   images: {
     title: string;
@@ -26,6 +29,8 @@ interface ImagesGalleryProps {
 }
 
 export default function ImagesGallery({ images }: ImagesGalleryProps) {
+  const [emblaRef] = useEmblaCarousel();
+
   const onInit = () => {
     console.log("lightGallery has been initialized");
   };
@@ -37,7 +42,24 @@ export default function ImagesGallery({ images }: ImagesGalleryProps) {
         plugins={[lgThumbnail, lgZoom, lgVideo]}
         selector=".gallery-item"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <Carousel
+          slides={images.map((image, index) => (
+            <a
+              key={`${image.src}-${index}`}
+              // className="gallery-item cursor-pointer block rounded-lg overflow-hidden aspect-square bg-gray-100 hover:shadow-lg transition-shadow duration-200"
+              data-src={image.src}
+              data-sub-html={`<h4>${image.title}</h4><p>${image.description}</p>`}
+            >
+              <img
+                alt={image.alt}
+                src={image.thumb}
+                // className="w-full h-full object-cover"
+              />
+            </a>
+          ))}
+        />
+
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {images.map((image, index) => (
             <a
               key={`${image.src}-${index}`}
@@ -45,14 +67,14 @@ export default function ImagesGallery({ images }: ImagesGalleryProps) {
               data-src={image.src}
               data-sub-html={`<h4>${image.title}</h4><p>${image.description}</p>`}
             >
-              <img 
-                alt={image.alt} 
-                src={image.thumb} 
+              <img
+                alt={image.alt}
+                src={image.thumb}
                 className="w-full h-full object-cover"
               />
             </a>
           ))}
-        </div>
+        </div> */}
       </LightGallery>
     </div>
   );
