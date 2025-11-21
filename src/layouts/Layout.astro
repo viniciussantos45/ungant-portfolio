@@ -1,4 +1,5 @@
 ---
+import "../styles/fonts.css";
 import "../styles/global.css";
 ---
 
@@ -11,7 +12,9 @@ import "../styles/global.css";
     <meta name="generator" content={Astro.generator} />
     <title>Ungant</title>
   </head>
-  <body class="bg-background text-foreground transition-colors duration-500">
+  <body
+    class="bg-background text-foreground transition-colors duration-500 font-sans"
+  >
     <slot />
   </body>
 </html>
