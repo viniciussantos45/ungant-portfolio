@@ -18,7 +18,7 @@ export default function ProjectShowcase() {
       />
 
       {/* Main Content */}
-      <div className="px-4 lg:px-8 pb-8 relative z-10">
+      <div className="px-4 lg:px-8 pb-12 md:pb-16 lg:pb-20 relative z-10">
         <HeroSection />
         <ProjectGrid items={projectItems} />
       </div>

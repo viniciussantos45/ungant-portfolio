@@ -8,7 +8,7 @@ const currentPath = Astro.url.pathname;
 <Layout>
   <div class="min-h-screen relative overflow-hidden">
     <Nav client:load currentPath={currentPath} />
-    <main class="relative z-10 pt-20 md:pt-24">
+    <main class="relative z-10 pt-16 md:pt-20 lg:pt-24">
       <slot />
     </main>
   </div>
