@@ -3,32 +3,39 @@ import PrincipalLayout from "../layouts/PrincipalLayout.astro";
 ---
 
 <PrincipalLayout>
-  <div class="px-4 lg:px-8 py-8 md:py-12">
-    <div class="max-w-5xl mx-auto">
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-primary mb-12 md:mb-16">
+  <div class="relative">
+    {/* Animated Background */}
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-20 right-0 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl opacity-40 animate-blob"></div>
+      <div class="absolute bottom-20 left-0 w-80 h-80 bg-primary/5 rounded-full filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+    </div>
+
+    <div class="px-4 lg:px-8 py-8 md:py-12 relative z-10">
+      <div class="max-w-5xl mx-auto">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-primary mb-12 md:mb-16 animate-fadeInUp opacity-0" style="animation-delay: 0.1s;">
         SOBRE NÓS
       </h1>
 
       <div class="space-y-8 md:space-y-10">
-        <p class="text-xl md:text-2xl text-secondary leading-relaxed md:leading-relaxed">
+        <p class="text-xl md:text-2xl text-secondary leading-relaxed md:leading-relaxed animate-fadeInUp opacity-0" style="animation-delay: 0.2s;">
           Somos especialistas em capturar histórias visuais que transformam
           momentos cotidianos em narrativas poderosas e envolventes.
         </p>
 
-        <p class="text-base md:text-lg text-secondary/90 leading-relaxed md:leading-loose">
+        <p class="text-base md:text-lg text-secondary/90 leading-relaxed md:leading-loose animate-fadeInUp opacity-0" style="animation-delay: 0.3s;">
           Nossa paixão está em descobrir a magia escondida nas cenas urbanas,
           criando uma ponte entre o real e o mítico através de fotografia e
           vídeo. Cada projeto é uma oportunidade de explorar novas perspectivas
           e contar histórias que ressoam com autenticidade.
         </p>
 
-        <p class="text-base md:text-lg text-secondary/90 leading-relaxed md:leading-loose">
+        <p class="text-base md:text-lg text-secondary/90 leading-relaxed md:leading-loose animate-fadeInUp opacity-0" style="animation-delay: 0.4s;">
           Com uma abordagem única que combina técnica apurada e visão artística,
           desenvolvemos trabalhos que vão além da simples documentação, criando
           peças visuais que conectam, inspiram e transformam.
         </p>
 
-        <div class="mt-12 md:mt-16 p-8 md:p-10 bg-primary/5 backdrop-blur-sm rounded-2xl border border-primary/10">
+        <div class="mt-12 md:mt-16 p-8 md:p-10 bg-primary/5 backdrop-blur-sm rounded-2xl border border-primary/10 animate-scaleIn opacity-0" style="animation-delay: 0.5s;">
           <h2 class="text-2xl md:text-3xl font-bold text-foreground mb-6">Nossa Missão</h2>
           <p class="text-base md:text-lg text-foreground/90 leading-relaxed md:leading-loose">
             Transformar o ordinário em extraordinário através de narrativas
@@ -38,5 +45,6 @@ import PrincipalLayout from "../layouts/PrincipalLayout.astro";
         </div>
       </div>
     </div>
+  </div>
   </div>
 </PrincipalLayout>
