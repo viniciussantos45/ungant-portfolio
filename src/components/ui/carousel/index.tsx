@@ -4,6 +4,8 @@ import React, { type JSX } from "react";
 import { NextButton, PrevButton, usePrevNextButtons } from "./arrow-buttons";
 import { DotButton, useDotButton } from "./dot-buttons";
 
+import "./_embla.css";
+
 type PropType = {
   slides: JSX.Element[];
   options?: EmblaOptionsType;
@@ -24,13 +26,20 @@ const Carousel: React.FC<PropType> = (props) => {
   } = usePrevNextButtons(emblaApi);
 
   return (
-    <section className="embla">
+    <section
+      className="embla"
+      style={
+        {
+          "--slides-to-show":
+            options && "slidesToScroll" in options ? options.slidesToScroll : 2,
+        } as React.CSSProperties
+      }
+    >
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((ElementComponent, index) => (
             <div className="embla__slide" key={index}>
               {ElementComponent}
-              <div className="embla__slide__number">{index + 1}</div>
             </div>
           ))}
         </div>

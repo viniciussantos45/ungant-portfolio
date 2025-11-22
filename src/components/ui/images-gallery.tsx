@@ -15,7 +15,6 @@ import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgVideo from "lightgallery/plugins/video";
 import lgZoom from "lightgallery/plugins/zoom";
 
-import useEmblaCarousel from "embla-carousel-react";
 import Carousel from "./carousel";
 
 interface ImagesGalleryProps {
@@ -29,7 +28,7 @@ interface ImagesGalleryProps {
 }
 
 export default function ImagesGallery({ images }: ImagesGalleryProps) {
-  const [emblaRef] = useEmblaCarousel();
+  // const [emblaRef] = useEmblaCarousel();
 
   const onInit = () => {
     console.log("lightGallery has been initialized");
@@ -43,17 +42,20 @@ export default function ImagesGallery({ images }: ImagesGalleryProps) {
         selector=".gallery-item"
       >
         <Carousel
+          options={{
+            slidesToScroll: 5,
+          }}
           slides={images.map((image, index) => (
             <a
-              key={`${image.src}-${index}`}
-              // className="gallery-item cursor-pointer block rounded-lg overflow-hidden aspect-square bg-gray-100 hover:shadow-lg transition-shadow duration-200"
+              key={`${image.src}-${index}`} // Added index to key to ensure library gallery works
+              className="gallery-item cursor-pointer rounded-lg overflow-hidden aspect-square bg-gray-100 hover:shadow-lg transition-shadow duration-200"
               data-src={image.src}
               data-sub-html={`<h4>${image.title}</h4><p>${image.description}</p>`}
             >
               <img
                 alt={image.alt}
                 src={image.thumb}
-                // className="w-full h-full object-cover"
+                className="rounded-lg object-cover"
               />
             </a>
           ))}

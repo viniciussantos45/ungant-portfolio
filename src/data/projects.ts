@@ -56,12 +56,16 @@ export const projectItems: ProjectItem[] = [
     description: "MODERN-DAY MUSE, NAVIGATING URBAN LEGENDS",
     subtitle: "BOLD STEPS THROUGH NEON MEMORIES THE CITY IS HER STAGE",
     image: "/projects/first/four.jpg",
-    videos: [
-      { src: "/projects/first/video-bla.mp4" },
-    ],
+    videos: [{ src: "/projects/first/video-bla.mp4" }],
     photos: [
       { src: "/projects/first/four.jpg" },
-      { src: "/projects/first/four-bts1.jpg" },
+      { src: "/projects/first/four.jpg" },
+      { src: "/projects/first/four.jpg" },
+      { src: "/projects/first/four.jpg" },
+      { src: "/projects/first/four.jpg" },
+      { src: "/projects/first/four.jpg" },
+      { src: "/projects/first/four.jpg" },
+      { src: "/projects/first/four.jpg" },
     ],
   },
 ];
