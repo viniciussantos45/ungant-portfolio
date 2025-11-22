@@ -20,6 +20,7 @@ This is an Astro-based portfolio website for Ungant, featuring a modern design w
 - **Icons**: Phosphor Icons React
 - **UI Components**: Custom components using Radix UI primitives
 - **Gallery**: LightGallery 2.9.0-beta.1 for enhanced image and video display
+- **Carousel**: Embla Carousel 8.6.0 for custom carousel components
 - **Package Manager**: pnpm (lockfile present)
 
 ### Project Structure
@@ -32,11 +33,10 @@ This is an Astro-based portfolio website for Ungant, featuring a modern design w
 - `src/pages/gallery/[id].astro` - Dynamic gallery route for individual projects with separate image and video sections
 
 #### Layouts
-- `src/layouts/Layout.astro` - Base HTML layout with global styles
-- `src/layouts/PrincipalLayout.astro` - Principal layout with integrated navigation
+- `src/layouts/Layout.astro` - Base HTML layout with global styles and dark mode support
+- `src/layouts/PrincipalLayout.astro` - Principal layout with integrated navigation and server-side path detection
 
 #### Components
-- `src/components/Welcome.astro` - Main content wrapper
 - `src/components/react/` - React components for project showcase
   - `nav.tsx` - Responsive navigation with mobile menu overlay (routes: /projetos, /sobre-nos, /contato)
   - `ProjectShowcase.tsx` - Main project showcase container
@@ -45,59 +45,22 @@ This is an Astro-based portfolio website for Ungant, featuring a modern design w
   - `ProjectCard.tsx` - Individual project card component
 - `src/components/ui/` - Reusable UI components
   - `button.tsx` - Styled button component with variants
-  - `images-gallery.tsx` - LightGallery React component for images with responsive grid layout
-  - `videos-gallery.tsx` - LightGallery React component for HTML5 videos with responsive grid layout
+  - `carousel/` - Embla carousel components (index.tsx, arrow-buttons.tsx, dot-buttons.tsx)
+  - `images-gallery.tsx` - LightGallery React component for images with Embla carousel integration
+  - `videos-gallery.tsx` - LightGallery React component for HTML5 videos with Embla carousel integration
 
 #### Data Layer
 - `src/data/projects.ts` - Centralized project data with TypeScript interfaces for all project information
 
 #### Assets & Styles
-- `src/styles/global.css` - Global styles with CSS custom properties
+- `src/styles/global.css` - Global styles with CSS custom properties and dark mode theming
 - `src/utils/index.ts` - Utility functions (cn for className merging)
-- `src/assets/` - Static assets (logos, icons)
-- `public/projects/` - Project media assets (images, videos)
+- `src/assets/` - Static assets (logos: logotipo-black.svg, logotipo-white.svg, logotipo-orange.svg)
+- `public/projects/` - Project media assets organized by project (images, videos)
 
-### Key Components
+### Key Architectural Patterns
 
-#### Layout Components
-- **PrincipalLayout** (`src/layouts/PrincipalLayout.astro`) - Main layout with integrated navigation and server-side path detection
-- **Layout** (`src/layouts/Layout.astro`) - Base HTML layout with dark mode support and transition animations
-- **Nav** (`src/components/react/nav.tsx`) - Responsive navigation with active page highlighting using Button components
-
-#### Project Showcase Components
-- **ProjectShowcase** (`src/components/react/ProjectShowcase.tsx`) - Main container with background styling (background image disabled)
-- **HeroSection** (`src/components/react/HeroSection.tsx`) - Hero section using Button component for CTA
-- **ProjectGrid** (`src/components/react/ProjectGrid.tsx`) - Grid layout container for projects
-- **ProjectCard** (`src/components/react/ProjectCard.tsx`) - Individual project card with media preview
-
-#### UI Components
-- **Button** (`src/components/ui/button.tsx`) - Styled button component with variants (used throughout navigation and CTAs)
-- **ImagesGallery** (`src/components/ui/images-gallery.tsx`) - LightGallery React component for images with responsive grid layout, zoom, and thumbnail support
-- **VideosGallery** (`src/components/ui/videos-gallery.tsx`) - LightGallery React component for HTML5 videos with responsive grid layout and proper video handling
-
-### Styling Approach
-- Uses Tailwind CSS 4.x with Vite plugin integration
-- Custom CSS variables defined in `src/styles/global.css` for theming
-- **Dark mode support** with class-based theming (`class="dark"` on html element)
-- Design system includes primary/secondary colors, shadows, and spacing
-- Responsive design with mobile-first approach
-- **Orange logo variant** used in navigation (`logotipo-orange.svg`)
-- **Backdrop blur effects** used in page sections for visual depth
-- **Smooth transitions** with duration-500 for color changes
-
-### React Integration
-- Components use `client:load` directive for hydration
-- React 19.1.1 with TypeScript support
-- State management with useState for mobile menu toggle
-- Uses modern React patterns and hooks
-
-### Media Assets
-- Logo variants (black, white, orange) in SVG format
-- Project media stored in `public/projects/` directory structure
-- Background images referenced from public directory
-- Project structure supports both video (.mp4) and photo (.jpg) assets
-
-### Project Data Structure
+#### Data-Driven Content
 Projects are centrally managed in `src/data/projects.ts` with TypeScript interfaces:
 ```typescript
 interface MediaItem {
@@ -115,59 +78,58 @@ export interface ProjectItem {
 }
 ```
 
-#### Project Navigation
-- **Clickable Project Cards**: Each project card navigates to `/gallery/{project-id}` when clicked
-- **Dynamic Routing**: Individual project galleries accessible via `/gallery/[id]` route
-- **Static Generation**: Uses Astro's `getStaticPaths()` for optimal performance
+#### Dynamic Routing
+- **Project Cards**: Navigate to `/gallery/{project-id}` when clicked
+- **Static Generation**: `/gallery/[id].astro` uses `getStaticPaths()` to pre-render all project pages
+- **Gallery Pages**: Separate "Photos" and "Videos" sections using ImagesGallery and VideosGallery components
 
-### Component Architecture
-- **Modular Design**: Components are broken down by responsibility
-- **Type Safety**: Full TypeScript interfaces for all data structures
-- **Reusable Components**: ProjectCard can display any project type
-- **Scalable Structure**: Easy to add new project types or media formats
-- **Layout Separation**: Navigation and content are properly separated at layout level
+#### Gallery System Integration
+- **LightGallery**: Handles lightbox functionality with zoom, thumbnails, and video playback
+- **Embla Carousel**: Provides responsive carousel navigation for gallery items
+- **Configuration**:
+  - Images: Use `data-src` attribute and `.gallery-item` selector
+  - Videos: Use `data-video` attribute (JSON with source array) and `.video-gallery-item` selector
+  - Both integrate with Carousel component for responsive grid navigation
 
-### Page Structure
-- **Home (/)**: Landing page with ProjectShowcase component and clickable project cards
-- **Projetos (/projetos)**: Dedicated projects page showcasing all video/photo work
-- **Sobre Nós (/sobre-nos)**: About page with company mission and story
-- **Contato (/contato)**: Contact page with form and contact information
-- **Dynamic Gallery (/gallery/[id])**: Individual project galleries with separate image and video sections
+#### Navigation Pattern
+- **Server-Side Path Detection**: `PrincipalLayout.astro` passes `Astro.url.pathname` to Nav component
+- **Active State Management**: Nav component uses `currentPath` prop to highlight active page
+- **Responsive Design**: Desktop horizontal nav + mobile fullscreen overlay
+- **Logo Variants**: Orange logo (`logotipo-orange.svg`) for desktop/mobile nav, black logo (`logotipo-black.svg`) for mobile overlay contrast
 
-#### Gallery System
-- **Separate Media Sections**: Each project gallery has distinct "Photos" and "Videos" sections
-- **LightGallery Integration**: Both sections use LightGallery for consistent user experience
-- **Images Section**: Grid layout with square aspect ratio, zoom and thumbnail features
-- **Videos Section**: Grid layout with video aspect ratio, HTML5 video support with proper `data-video` configuration
-- **Responsive Design**: Both galleries adapt to different screen sizes (1-4 columns)
+#### Styling System
+- **CSS Variables**: Defined in `src/styles/global.css` with separate `:root` and `.dark` themes
+- **Tailwind Integration**: Vite plugin for Tailwind CSS 4.x (@tailwindcss/vite)
+- **Color Tokens**: Primary (orange), secondary, background, foreground, etc. mapped to CSS custom properties
+- **Dark Mode**: Class-based theming with `.dark` class on html element
+- **Typography**: Acumin Pro font for dark mode, system fonts for light mode
 
-### Navigation System
-- **Responsive Design**: Desktop horizontal nav + mobile overlay menu
-- **Clean Routes**: `/projetos`, `/sobre-nos`, `/contato`
-- **Active Page Highlighting**: Server-side path detection with instant visual feedback
-- **Button-Based Navigation**: Uses Button component with `default`/`outline` variants for active/inactive states
-- **Performance Optimized**: No client-side path detection, eliminates flash/delay on page load
-- **Consistent Styling**: Matches design system across all states
-- **Mobile Menu Enhancement**: Improved mobile overlay layout with proper logo positioning and contrast
-- **Fixed Position**: Navigation stays fixed at top with backdrop blur for modern glass effect
-- **Proper Z-Index**: Navigation at z-40, mobile overlay at z-50 for correct layering
+#### React Integration
+- **Hydration**: Components use `client:load` directive for interactive elements (Nav, galleries, carousels)
+- **Modern React**: Version 19.1.1 with TypeScript support
+- **State Management**: useState for local component state (e.g., mobile menu toggle)
 
-### Recent Technical Improvements
-- **Server-Side Navigation**: PrincipalLayout passes `Astro.url.pathname` to Nav component
-- **Component Consistency**: Button component used throughout (navigation, CTAs, forms)
-- **Dark Mode Integration**: Full dark mode support with smooth transitions
-- **Background Optimization**: ProjectShowcase background image disabled for performance
-- **Form Styling**: Contact page uses consistent Button styling
-- **Logo System**: Desktop navigation uses orange logo variant, mobile overlay uses black logo for contrast
-- **Button Variant Update**: Navigation buttons now use 'outline' variant for inactive states (better visual hierarchy)
-- **Mobile Navigation Redesign**: Enhanced mobile overlay with improved layout, logo contrast, and removed bottom CTA
-- **Color System Refinement**: Updated secondary color variable for better contrast and readability
-- **Fixed Navigation Enhancement**: Added fixed positioning with backdrop blur effect and semi-transparent background
-- **Layout Spacing Updates**: Added proper padding-top to main content (pt-20 mobile, pt-36 desktop) to account for fixed navigation
-- **Page Layout Optimization**: Removed redundant padding from contato and sobre-nos pages as spacing is now handled by layout
-- **LightGallery Integration**: Added LightGallery 2.9.0-beta.1 for enhanced image and video display with zoom, thumbnails, and video support
-- **Dynamic Gallery System**: Implemented `/gallery/[id]` routes with centralized project data and separate image/video sections
-- **Project Data Centralization**: Created `src/data/projects.ts` for centralized project management with TypeScript interfaces
-- **Component Refactoring**: Refactored ProjectCard, ProjectGrid, and ProjectShowcase to use centralized data
-- **Enhanced Video Support**: Fixed LightGallery video configuration using proper `data-video` attributes (removed conflicting `data-src`)
-- **Responsive Gallery Layouts**: Both image and video galleries use responsive grid systems optimized for different media types
+### Component Patterns
+
+#### Layout Components
+- **PrincipalLayout**: Wraps pages with Nav component and provides proper spacing (pt-20 mobile, pt-24 desktop) for fixed navigation
+- **Fixed Navigation**: Backdrop blur effect (`backdrop-blur-md bg-background/80`) with z-40 for nav, z-50 for mobile overlay
+
+#### Button Component
+- Central component used throughout (navigation, CTAs, forms)
+- Variants: `default`, `secondary`, `outline`, `ghost`
+- Built with Radix UI Slot and class-variance-authority
+
+#### Gallery Components
+- **ImagesGallery**: Displays images in carousel with LightGallery integration
+  - Square aspect ratio (`aspect-square`)
+  - Configurable slides to scroll (default: 4)
+- **VideosGallery**: Displays videos with play button overlay
+  - Video aspect ratio (`aspect-video`)
+  - Configurable slides to scroll (default: 3)
+  - Uses `data-video` attribute with JSON configuration for proper video playback
+
+#### Carousel Component
+- Embla-based carousel with prev/next buttons and dot navigation
+- Configurable `slidesToScroll` via options prop
+- CSS custom property `--slides-to-show` for responsive grid layout
