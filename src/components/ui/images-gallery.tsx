@@ -43,7 +43,7 @@ export default function ImagesGallery({ images }: ImagesGalleryProps) {
       >
         <Carousel
           options={{
-            slidesToScroll: 5,
+            slidesToScroll: 4,
           }}
           slides={images.map((image, index) => (
             <a
