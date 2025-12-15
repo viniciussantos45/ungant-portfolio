@@ -52,7 +52,7 @@ export default function ProjectInfo({ project }: ProjectInfoProps) {
       {/* Project Details Card */}
       <motion.div
         whileHover={{ scale: 1.02 }}
-        className="p-6 bg-primary/5 backdrop-blur-sm rounded-2xl border border-primary/10"
+        className="p-6  backdrop-blur-sm rounded-2xl border border-primary/10"
       >
         <h3 className="text-lg font-bold text-foreground mb-4">
           Detalhes do Projeto
@@ -88,7 +88,7 @@ export default function ProjectInfo({ project }: ProjectInfoProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.9 }}
-        className="p-6 bg-primary/5 backdrop-blur-sm rounded-2xl border border-primary/10"
+        className="p-6  backdrop-blur-sm rounded-2xl border border-primary/10"
       >
         <h3 className="text-lg font-bold text-foreground mb-4">Compartilhe</h3>
         <div className="flex gap-3">

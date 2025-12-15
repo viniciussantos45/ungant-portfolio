@@ -56,7 +56,7 @@ export default function AboutStats() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
             whileHover={{ scale: 1.05, y: -5 }}
-            className="p-6 bg-primary/5 backdrop-blur-sm rounded-2xl border border-primary/10 hover:border-primary/30 transition-all cursor-pointer group"
+            className="p-6  backdrop-blur-sm rounded-2xl border border-primary/10 hover:border-primary/30 transition-all cursor-pointer group"
           >
             <stat.icon
               className={`w-10 h-10 ${stat.color} mb-4 group-hover:scale-110 transition-transform`}
@@ -76,7 +76,7 @@ export default function AboutStats() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="p-8 bg-primary/5 backdrop-blur-sm rounded-2xl border border-primary/10"
+        className="p-8  backdrop-blur-sm rounded-2xl border border-primary/10"
       >
         <h3 className="text-2xl font-bold text-foreground mb-6">
           Nossa Expertise
@@ -138,7 +138,7 @@ export default function AboutStats() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.8 }}
-        className="text-center p-8 bg-primary/5 backdrop-blur-sm rounded-2xl border border-primary/10"
+        className="text-center p-8  backdrop-blur-sm rounded-2xl border border-primary/10"
       >
         <p className="text-lg text-secondary mb-4">
           Pronto para criar algo incrível?
