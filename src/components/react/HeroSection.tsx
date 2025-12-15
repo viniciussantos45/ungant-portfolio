@@ -1,4 +1,23 @@
+import { useEffect, useState } from "react";
+
 export default function HeroSection() {
+  const [displayedText, setDisplayedText] = useState("");
+  const fullText = "Capturando momentos que inspiram e conectam";
+
+  useEffect(() => {
+    let currentIndex = 0;
+    const timer = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 50); // Adjust speed here (lower = faster)
+
+    return () => clearInterval(timer);
+  }, []);
+
   const scrollToProjects = () => {
     const projectsSection = document.querySelector("#projects-grid");
     if (projectsSection) {
@@ -13,11 +32,18 @@ export default function HeroSection() {
 
       <div className="relative z-10">
         <h1
-          className="text-5xl md:text-7xl lg:text-8xl xl:text-7xl text-primary leading-none mb-10 md:mb-12 font-black tracking-tight animate-fadeInUp opacity-0"
+          className="text-5xl md:text-7xl lg:text-8xl xl:text-7xl text-primary leading-none mb-6 font-black tracking-tight animate-fadeInUp opacity-0"
           style={{ animationDelay: "0.2s" }}
         >
           Histórias visuais poderosas
         </h1>
+
+        <div className="inline-flex items-center gap-2 mb-2">
+          <span className="text-sm font-semibold text-secondary">
+            {displayedText}
+            <span className="absolute inline-block w-0.5 h-4 bg-primary ml-1 animate-pulse"></span>
+          </span>
+        </div>
 
         {/* <div
           className="animate-fadeInUp opacity-0"
