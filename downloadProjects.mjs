@@ -15,6 +15,19 @@ const PUBLIC_DIR = path.join(__dirname, "public", "projects");
 const PROJECTS_DATA_PATH = path.join(__dirname, "src", "data", "projects.ts");
 
 /**
+ * Check if ffmpeg is installed
+ */
+async function checkFfmpeg() {
+  try {
+    await execAsync("ffmpeg -version");
+    return true;
+  } catch (error) {
+    console.log("⚠️  ffmpeg not found - video optimization will be skipped");
+    return false;
+  }
+}
+
+/**
  * Check if gdown is installed
  */
 async function checkGdown() {
@@ -151,7 +164,11 @@ function organizeFilesByProject(files) {
 function generateProjectItems(projects) {
   return projects.map((project) => {
     // Use first photo, or first video if no photos available
-    const firstPhoto = project.photos[0]?.src || project.videos[0]?.src || "";
+    const firstPhoto =
+      project.photos[0]?.src ||
+      project.videoThumbnail ||
+      project.videos[0]?.src ||
+      "";
 
     return {
       id: project.id,
@@ -227,6 +244,142 @@ function moveToPublic() {
 }
 
 /**
+ * Generate thumbnail from video using ffmpeg
+ */
+async function generateVideoThumbnail(videoPath, outputPath) {
+  try {
+    // Generate thumbnail from 1 second into the video
+    await execAsync(
+      `ffmpeg -i "${videoPath}" -ss 00:00:01 -vframes 1 -q:v 2 "${outputPath}" -y`,
+      { maxBuffer: 1024 * 1024 * 10 }
+    );
+    console.log(`  ✓ Generated thumbnail: ${path.basename(outputPath)}`);
+    return true;
+  } catch (error) {
+    console.error(`  ✗ Failed to generate thumbnail: ${error.message}`);
+    return false;
+  }
+}
+
+/**
+ * Optimize video using ffmpeg (high quality, smaller size)
+ */
+async function optimizeVideo(videoPath, outputPath) {
+  try {
+    // Use H.264 with CRF 23 (high quality), 1080p max, efficient preset
+    // CRF 23 is visually lossless for most content
+    await execAsync(
+      `ffmpeg -i "${videoPath}" -vf "scale='min(1920,iw)':'min(1080,ih)':force_original_aspect_ratio=decrease" -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 192k -movflags +faststart "${outputPath}" -y`,
+      { maxBuffer: 1024 * 1024 * 10 }
+    );
+
+    // Check file sizes
+    const originalSize = fs.statSync(videoPath).size;
+    const optimizedSize = fs.statSync(outputPath).size;
+    const savedPercent = (
+      ((originalSize - optimizedSize) / originalSize) *
+      100
+    ).toFixed(1);
+
+    console.log(`  ✓ ${path.basename(videoPath)}`);
+    console.log(
+      `    ${(originalSize / 1024 / 1024).toFixed(1)}MB → ${(
+        optimizedSize /
+        1024 /
+        1024
+      ).toFixed(1)}MB (saved ${savedPercent}%)`
+    );
+    return true;
+  } catch (error) {
+    console.error(`  ✗ Failed to optimize: ${error.message}`);
+    return false;
+  }
+}
+
+/**
+ * Process and optimize all videos
+ */
+async function processAllVideos(hasFfmpeg) {
+  if (!hasFfmpeg) {
+    console.log("⏭️  Skipping video optimization (ffmpeg not available)\n");
+    return;
+  }
+
+  console.log("🎬 Optimizing video files...\n");
+
+  const videoExtensions = [".mp4", ".webm", ".mov", ".avi", ".mkv"];
+  const allFiles = getAllFiles(PUBLIC_DIR);
+  const videoFiles = allFiles.filter((file) =>
+    videoExtensions.includes(path.extname(file.name).toLowerCase())
+  );
+
+  if (videoFiles.length === 0) {
+    console.log("  No videos found to optimize\n");
+    return;
+  }
+
+  console.log(`  Found ${videoFiles.length} videos to optimize\n`);
+
+  for (const file of videoFiles) {
+    const videoPath = file.fullPath;
+    const tempPath = `${videoPath}.tmp.mp4`;
+
+    const optimized = await optimizeVideo(videoPath, tempPath);
+
+    if (optimized) {
+      // Replace original with optimized version
+      fs.unlinkSync(videoPath);
+      fs.renameSync(tempPath, videoPath);
+    } else if (fs.existsSync(tempPath)) {
+      fs.unlinkSync(tempPath);
+    }
+  }
+
+  console.log("\n");
+}
+
+/**
+ * Generate thumbnails for projects without photos
+ */
+async function generateProjectThumbnails(projects, hasFfmpeg) {
+  if (!hasFfmpeg) {
+    return projects;
+  }
+
+  console.log("🖼️  Generating thumbnails for video-only projects...\n");
+
+  for (const project of projects) {
+    // Only generate thumbnail if project has no photos but has videos
+    if (project.photos.length === 0 && project.videos.length > 0) {
+      const firstVideo = project.videos[0];
+      const videoFileName = decodeURIComponent(firstVideo.src.split("/").pop());
+      const videoPath = path.join(PUBLIC_DIR, project.name, videoFileName);
+
+      if (!fs.existsSync(videoPath)) {
+        console.log(`  ⚠️  Video not found: ${videoPath}`);
+        continue;
+      }
+
+      // Generate thumbnail
+      const thumbFileName = `${path.parse(videoFileName).name}-thumb.jpg`;
+      const thumbPath = path.join(PUBLIC_DIR, project.name, thumbFileName);
+      const thumbGenerated = await generateVideoThumbnail(videoPath, thumbPath);
+
+      if (thumbGenerated) {
+        const encodedThumbPath = `/projects/${encodeURIComponent(
+          project.name
+        )}/${encodeURIComponent(thumbFileName)}`;
+        project.videoThumbnail = encodedThumbPath;
+      }
+
+      console.log(`  ✓ Processed: ${project.name}\n`);
+    }
+  }
+
+  return projects;
+}
+
+/**
  * Main function
  */
 async function main() {
@@ -244,6 +397,10 @@ async function main() {
     process.exit(1);
   }
 
+  // Check if ffmpeg is installed
+  const hasFfmpeg = await checkFfmpeg();
+  console.log("");
+
   // Check for --force flag
   const forceDownload = process.argv.includes("--force");
   if (forceDownload) {
@@ -260,9 +417,16 @@ async function main() {
   // Move files to public directory
   const files = moveToPublic();
 
+  // Optimize all videos after download
+  await processAllVideos(hasFfmpeg);
+
   // Organize files and generate project data
   console.log("📦 Organizing projects...\n");
-  const projects = organizeFilesByProject(files);
+  let projects = organizeFilesByProject(files);
+
+  // Generate thumbnails for projects without photos
+  projects = await generateProjectThumbnails(projects, hasFfmpeg);
+
   const projectItems = generateProjectItems(projects);
 
   console.log(`✨ Generated ${projectItems.length} projects:\n`);
