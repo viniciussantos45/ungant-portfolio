@@ -19,11 +19,11 @@ jobs:
               with:
                   node-version: 20
 
-            - name: Install dependencies
-              uses: bahmutov/npm-install@v1
-
             - name: Install pnpm
               uses: pnpm/action-setup@v3
+
+            - name: Install dependencies
+              run: pnpm install
 
             - name: Build project
               run: pnpm build
