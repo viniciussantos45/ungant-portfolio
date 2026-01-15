@@ -1,29 +1,81 @@
 "use client";
 
-import HeroSection from "./HeroSection";
+import { useState } from "react";
 import ProjectGrid from "./ProjectGrid";
 import { projectItems } from "../../data/projects";
 
+type FilterType = "all" | "comercial" | "evento";
+
 export default function ProjectShowcase() {
+  const [activeFilter, setActiveFilter] = useState<FilterType>("all");
+
+  // Filter projects based on category (you can customize the filtering logic)
+  const filteredItems = projectItems.filter((item) => {
+    if (activeFilter === "all") return true;
+    if (activeFilter === "comercial") {
+      return item.title.includes("HEINZ") ||
+             item.title.includes("CHEVROLET") ||
+             item.title.includes("CORPORATIVO");
+    }
+    if (activeFilter === "evento") {
+      return item.title.includes("AFTERMOVIE");
+    }
+    return true;
+  });
 
   return (
-    <>
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-primary/10 animate-gradient"></div>
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-primary/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-secondary/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-primary/15 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-      </div>
+    <section className="py-32 px-8 bg-black" id="projetos">
+      <div className="max-w-[1800px] mx-auto">
+        {/* Section Header */}
+        <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div>
+            <h2 className="text-4xl md:text-6xl font-display font-bold uppercase tracking-tighter">
+              Projetos <span className="text-primary italic">Selecionados</span>
+            </h2>
+            <p className="mt-4 text-white/50 max-w-md uppercase text-[10px] tracking-widest leading-loose">
+              Explorando as fronteiras do cinema comercial e experimental
+              através de lentes precisas.
+            </p>
+          </div>
 
-      {/* Grain Texture Overlay */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')] opacity-30"></div>
+          {/* Filter Buttons */}
+          <div className="flex gap-4">
+            <button
+              onClick={() => setActiveFilter("all")}
+              className={`text-[10px] font-bold tracking-widest uppercase pb-2 transition-colors ${
+                activeFilter === "all"
+                  ? "border-b border-primary text-white"
+                  : "text-white/40 hover:text-white"
+              }`}
+            >
+              Todos
+            </button>
+            <button
+              onClick={() => setActiveFilter("comercial")}
+              className={`text-[10px] font-bold tracking-widest uppercase pb-2 transition-colors ${
+                activeFilter === "comercial"
+                  ? "border-b border-primary text-white"
+                  : "text-white/40 hover:text-white"
+              }`}
+            >
+              Comercial
+            </button>
+            <button
+              onClick={() => setActiveFilter("evento")}
+              className={`text-[10px] font-bold tracking-widest uppercase pb-2 transition-colors ${
+                activeFilter === "evento"
+                  ? "border-b border-primary text-white"
+                  : "text-white/40 hover:text-white"
+              }`}
+            >
+              Evento
+            </button>
+          </div>
+        </div>
 
-      {/* Main Content */}
-      <div className="px-4 lg:px-8 pb-12 md:pb-16 lg:pb-20 relative z-10">
-        <HeroSection />
-        <ProjectGrid items={projectItems} />
+        {/* Projects Grid */}
+        <ProjectGrid items={filteredItems} />
       </div>
-    </>
+    </section>
   );
 }

@@ -6,10 +6,22 @@ interface ProjectGridProps {
 }
 
 export default function ProjectGrid({ items }: ProjectGridProps) {
+  // Assign variants to create visual interest in the masonry grid
+  const getVariant = (index: number): "tall" | "wide" | "square" => {
+    // Pattern: tall, wide, square, square, wide, square...
+    const patterns = ["tall", "wide", "square", "square", "wide", "square"] as const;
+    return patterns[index % patterns.length];
+  };
+
   return (
-    <div id="projects-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto scroll-mt-24">
+    <div id="projects-grid" className="masonry-grid scroll-mt-24">
       {items.map((item, index) => (
-        <ProjectCard key={item.id} item={item} index={index} />
+        <ProjectCard
+          key={item.id}
+          item={item}
+          index={index}
+          variant={getVariant(index)}
+        />
       ))}
     </div>
   );

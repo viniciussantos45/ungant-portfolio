@@ -2,14 +2,22 @@
 import Nav from "../components/react/nav";
 import Layout from "./Layout.astro";
 
+interface Props {
+  noPadding?: boolean;
+}
+
+const { noPadding = false } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
 <Layout>
-  <div class="min-h-screen relative overflow-hidden">
+  <div class="min-h-screen relative">
     <Nav client:load currentPath={currentPath} />
-    <main class="relative z-10 pt-16 md:pt-20 lg:pt-24">
+    <div class:list={[
+      "relative z-10",
+      { "pt-20 md:pt-24": !noPadding }
+    ]}>
       <slot />
-    </main>
+    </div>
   </div>
 </Layout>

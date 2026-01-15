@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Ungant | Premium Audiovisual Production</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&amp;family=Oswald:wght@500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style type="text/tailwindcss">
+      :root {
+        --primary: #ff4500;
+        --charcoal: #121212;
+        --pure-black: #000;
+      }
+      .grain-texture::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+        opacity: 0.04;
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBd8kNsLDdsXX7Olg7s0aMYshuAgCACiM3htHShOihRaiCElVxHsRgihdjVLDQS7v1IsUwygxraT9UhdW6KwHN246Rh2n68dc1b_jSZ5xc7McpySLeXgEhFgC35HKR3iG8a4c7QcrMM5Y6UdAvX2Dz3NUJpA8xnnW46xuvtBa-80HrAC9m2UjA9YXdCY5fGldWVOg8jq_NdIZYumbYOE1K8S5SHJ5nKjjgYdy-qBQSuJhf_yozZFotDMncrLYaPWmsjWQbyIiF63j6F);
+      }
+      .ungant-mask-text {
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDKPkt22-m53FWF3yIIrWJ3VK1DnyEn6lIVkot0eX8SIEVfJVmIYxcjThcGStDyqWrvKYIBWZqARNv8BdaFC7JvwROl1daI22XTC8qYCYGOjD9K1W8b_Koz5W4cR0DnQ6RuFAnn9JIglvUKHYxdiO34lKwwjkdFtizAku1qgbDXieCuxP7YU-3STpwt9MFY4dgrLm3mFzZVk6NPh_-IPaCQolhgg98o1_jB2ckoCN7B_LrltarNdiu7mmtUAJDM2pkXGnm3OUht4bOA);
+        background-size: cover;
+        background-position: center;
+      }
+      .outline-text {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+        color: transparent;
+      }
+      .glass-btn {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .masonry-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1.5rem;
+      }
+      .project-card {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .project-card:hover .project-image {
+        transform: scale(1.05);
+      }
+      .project-card:hover .project-arrow {
+        transform: translate(4px, -4px);
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#FF4500",
+              charcoal: "#121212",
+              black: "#000000",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Oswald", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-black text-white font-sans antialiased selection:bg-primary selection:text-white grain-texture"
+  >
+    <header class="fixed top-0 w-full z-[100] px-8 py-6">
+      <div class="max-w-[1800px] mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <div class="w-8 h-8 bg-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-white text-lg"
+              >videocam</span
+            >
+          </div>
+          <span
+            class="font-black text-2xl tracking-tighter uppercase font-display"
+            >UNGANT</span
+          >
+        </div>
+        <nav class="hidden md:flex items-center gap-12">
+          <a
+            class="text-[10px] font-bold tracking-[0.3em] uppercase hover:text-primary transition-colors"
+            href="#projetos"
+            >Projetos</a
+          >
+          <a
+            class="text-[10px] font-bold tracking-[0.3em] uppercase hover:text-primary transition-colors"
+            href="#sobre"
+            >Nossa Essência</a
+          >
+          <a
+            class="text-[10px] font-bold tracking-[0.3em] uppercase hover:text-primary transition-colors"
+            href="#contato"
+            >Contato</a
+          >
+        </nav>
+        <div class="flex items-center gap-6">
+          <span
+            class="hidden lg:block text-[10px] font-bold tracking-[0.3em] text-white/40"
+            >SÃO PAULO / BR</span
+          >
+          <button class="md:hidden text-white">
+            <span class="material-symbols-outlined text-3xl">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section
+        class="relative h-screen flex items-center justify-center overflow-hidden bg-charcoal"
+      >
+        <div class="absolute inset-0 z-0 overflow-hidden">
+          <img
+            alt="Cinematic Still"
+            class="w-full h-full object-cover opacity-60 scale-105"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKPkt22-m53FWF3yIIrWJ3VK1DnyEn6lIVkot0eX8SIEVfJVmIYxcjThcGStDyqWrvKYIBWZqARNv8BdaFC7JvwROl1daI22XTC8qYCYGOjD9K1W8b_Koz5W4cR0DnQ6RuFAnn9JIglvUKHYxdiO34lKwwjkdFtizAku1qgbDXieCuxP7YU-3STpwt9MFY4dgrLm3mFzZVk6NPh_-IPaCQolhgg98o1_jB2ckoCN7B_LrltarNdiu7mmtUAJDM2pkXGnm3OUht4bOA"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black"
+          ></div>
+        </div>
+        <div
+          class="absolute right-[-2vw] md:right-0 top-1/2 -translate-y-1/2 z-10 opacity-20 pointer-events-none select-none"
+        >
+          <div
+            class="font-display font-black text-[25vw] md:text-[20vw] leading-[0.75] flex flex-col items-end tracking-tighter text-white"
+          >
+            <span>UN</span>
+            <span>GA</span>
+            <span>NT</span>
+          </div>
+        </div>
+        <div class="relative z-20 max-w-6xl mx-auto px-8 w-full">
+          <div class="space-y-6 max-w-3xl">
+            <div
+              class="flex items-center gap-4 text-primary font-bold tracking-[0.4em] uppercase text-xs mb-8"
+            >
+              <span class="w-12 h-px bg-primary"></span>
+              <span>High-End Audiovisual</span>
+            </div>
+            <h1
+              class="text-6xl md:text-9xl font-display font-bold text-white leading-[0.9] tracking-tight uppercase"
+            >
+              Histórias<br />visuais<br /><span class="text-primary"
+                >poderosas</span
+              >
+            </h1>
+            <div class="pt-8 flex gap-6">
+              <a
+                class="bg-primary text-white px-8 py-4 text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300"
+                href="#projetos"
+              >
+                Ver Portfólio
+              </a>
+              <button
+                class="glass-btn text-white px-8 py-4 text-xs font-bold tracking-widest uppercase hover:bg-white/10 transition-all duration-300"
+              >
+                Showreel 2024
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="absolute bottom-12 left-8 z-20 hidden md:block">
+          <div class="flex flex-col gap-4">
+            <span class="material-symbols-outlined animate-bounce text-white/30"
+              >south</span
+            >
+          </div>
+        </div>
+      </section>
+      <section class="py-32 px-8 bg-black" id="projetos">
+        <div class="max-w-[1800px] mx-auto">
+          <div
+            class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8"
+          >
+            <div>
+              <h2
+                class="text-4xl md:text-6xl font-display font-bold uppercase tracking-tighter"
+              >
+                Projetos <span class="text-primary italic">Selecionados</span>
+              </h2>
+              <p
+                class="mt-4 text-white/50 max-w-md uppercase text-[10px] tracking-widest leading-loose"
+              >
+                Explorando as fronteiras do cinema comercial e experimental
+                através de lentes precisas.
+              </p>
+            </div>
+            <div class="flex gap-4">
+              <button
+                class="text-[10px] font-bold tracking-widest uppercase border-b border-primary pb-2"
+              >
+                Todos
+              </button>
+              <button
+                class="text-[10px] font-bold tracking-widest uppercase text-white/40 hover:text-white transition-colors pb-2"
+              >
+                Comercial
+              </button>
+              <button
+                class="text-[10px] font-bold tracking-widest uppercase text-white/40 hover:text-white transition-colors pb-2"
+              >
+                Evento
+              </button>
+            </div>
+          </div>
+          <div class="masonry-grid">
+            <div
+              class="col-span-12 md:col-span-6 lg:col-span-4 row-span-2 project-card group relative aspect-[3/4] overflow-hidden bg-charcoal"
+            >
+              <img
+                alt="Project"
+                class="project-image absolute inset-0 w-full h-full object-cover transition-transform duration-1000 grayscale group-hover:grayscale-0"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmU_T2G82I2cPRSABMQXg6pqnWvkZnBZbEASK1tT9u3fwXwTDjSm3iFy1P1RhnH6mrtX8KjIhhQ0bqRZgC86A3g-sCxcU8ugIldAwiQUsDPLkw_2iGI8vWUSXH-msT0_LWXL-wMzNzwsCvNv2zGj7W-x8B3m4l4_Iq8AFaCm6ZvpMCX7PRoZNzyBwOdR3tX1HhXN3I9jr8enMVb6wQY2HWpz-40UzW7UNJY46_V9kYJq0sX_kLzDkGr6Qxpblc0VwaMhT7Qj2C04d3"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60"
+              ></div>
+              <div
+                class="absolute top-8 right-8 project-arrow transition-transform duration-500"
+              >
+                <span
+                  class="material-symbols-outlined text-4xl text-primary font-light"
+                  >north_east</span
+                >
+              </div>
+              <div class="absolute bottom-10 left-10 space-y-2">
+                <span
+                  class="text-[10px] font-bold tracking-[0.3em] uppercase text-primary"
+                  >Aftermovie</span
+                >
+                <h3
+                  class="text-4xl font-display font-bold uppercase tracking-tighter"
+                >
+                  Energy Festival
+                </h3>
+              </div>
+            </div>
+            <div
+              class="col-span-12 md:col-span-6 lg:col-span-8 project-card group relative aspect-[16/9] lg:aspect-auto overflow-hidden bg-charcoal"
+            >
+              <img
+                alt="Project"
+                class="project-image absolute inset-0 w-full h-full object-cover transition-transform duration-1000 grayscale group-hover:grayscale-0"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5HecxyitE5s1IPeC4u5FeRXnbLW9X_dMZrUvIMTIEBvbxv_a_g9Xz9pnw4ZTN0klKdilU8jdavIZi5gKdmZP5Q-_1zf0EuxTedygPzp5IL2KPRorfW3tnQ9eQGuaCClpc28d1FVXn7XV_AuBLT959IIOxqQeqcAoeLQLUJYr3VgfQ_sI_q1MsZ8R6o42fEYmEiOBUBnSfPbM8MdrVIO8bICpynFKDH5MdCv5mjYqmXJmVaehhKiqAi-af1ZC9SuqwZQRhtVKbesqH"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60"
+              ></div>
+              <div
+                class="absolute top-8 right-8 project-arrow transition-transform duration-500"
+              >
+                <span
+                  class="material-symbols-outlined text-4xl text-primary font-light"
+                  >north_east</span
+                >
+              </div>
+              <div class="absolute bottom-10 left-10 space-y-2">
+                <span
+                  class="text-[10px] font-bold tracking-[0.3em] uppercase text-primary"
+                  >Campaign</span
+                >
+                <h3
+                  class="text-4xl font-display font-bold uppercase tracking-tighter"
+                >
+                  Experience New
+                </h3>
+              </div>
+            </div>
+            <div
+              class="col-span-12 md:col-span-6 lg:col-span-4 project-card group relative aspect-square overflow-hidden bg-charcoal"
+            >
+              <img
+                alt="Project"
+                class="project-image absolute inset-0 w-full h-full object-cover transition-transform duration-1000 grayscale group-hover:grayscale-0"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2Q0OwIygEK8-HMwP2MTQvzMoa_OoMIQnVM9RYyXS6qShmJC4ltxUFtNX3CwJ_cakaLpxZ6--xDuEs0OthWRiQ9lO-5G4joP-kBG8mC4COKSP_4zTpxf_pyuwOAGeeUscD7CM_Klv1BnYJ8BWU7AihcgSlg8IiAvLmhhR1IkTjBdMN-gA6ZEmPam-OAXEvyLOh-OQB1ZyugLFwrkz-mKutlp_J-zP8o6M9imIaooa9a1AP414lSQoWhZ6S5Zx-redTp5VXs2B1JhKW"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60"
+              ></div>
+              <div
+                class="absolute top-8 right-8 project-arrow transition-transform duration-500"
+              >
+                <span
+                  class="material-symbols-outlined text-4xl text-primary font-light"
+                  >north_east</span
+                >
+              </div>
+              <div class="absolute bottom-10 left-10 space-y-2">
+                <span
+                  class="text-[10px] font-bold tracking-[0.3em] uppercase text-primary"
+                  >Corporate</span
+                >
+                <h3
+                  class="text-3xl font-display font-bold uppercase tracking-tighter"
+                >
+                  Global Vision
+                </h3>
+              </div>
+            </div>
+            <div
+              class="col-span-12 md:col-span-6 lg:col-span-4 project-card group relative aspect-square overflow-hidden bg-charcoal"
+            >
+              <img
+                alt="Project"
+                class="project-image absolute inset-0 w-full h-full object-cover transition-transform duration-1000 grayscale group-hover:grayscale-0"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_ebSfaMzTEyvTAsiRrijdu8aBoWFCROp3KE8-2VhJmXxb0i11WFBMkuR7sNHNLSnZO563XQajsCF_qhTGaUxJok02gk2D7k49cvnUnbamcUQMZdXKrx3-6-1Y_dOZwqGzpqnpyqlTBcBMhG_FeZQLLQx9reHLIOmFCo4WzJLHLaG4_vOlP33yiNNjbx3jBn_BzBeZKHtTtoM4FuW3lrVuJ4fvvEocMJq9F529uE09WZwglFtNb9vklyet0ICgSYpa6SjLufpUv_B6"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60"
+              ></div>
+              <div
+                class="absolute top-8 right-8 project-arrow transition-transform duration-500"
+              >
+                <span
+                  class="material-symbols-outlined text-4xl text-primary font-light"
+                  >north_east</span
+                >
+              </div>
+              <div class="absolute bottom-10 left-10 space-y-2">
+                <span
+                  class="text-[10px] font-bold tracking-[0.3em] uppercase text-primary"
+                  >Fashion Film</span
+                >
+                <h3
+                  class="text-3xl font-display font-bold uppercase tracking-tighter"
+                >
+                  Nocturnal Muse
+                </h3>
+              </div>
+            </div>
+            <div
+              class="col-span-12 lg:col-span-8 project-card group relative aspect-[16/7] overflow-hidden bg-charcoal"
+            >
+              <img
+                alt="Project"
+                class="project-image absolute inset-0 w-full h-full object-cover transition-transform duration-1000 grayscale group-hover:grayscale-0"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZGd7QwuDet2nOtFUvlZSri0sJPecVaheMETqmK7HgUaTOZmMn-rAxdaBj-rFIRN9FfU_JyD0WK9Y4E3ZRD3dInctIlAvrIkZR5Xdbec2peZdMN6l_T2Siy8XOz_9hQuWoQg8yy5wEkSTou3RAWp2AnBzvF2rKrup_Y0y9rYuUYjuXdzc_2U015VxlNt_PLWmfPyR63CtOjG6EezA8ICYpecJOTQ4jyBYAqaEYacw0QqkT4Lda3Vyqtldz2yDkZaYrh85GIhS9-P_X"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60"
+              ></div>
+              <div
+                class="absolute top-8 right-8 project-arrow transition-transform duration-500"
+              >
+                <span
+                  class="material-symbols-outlined text-4xl text-primary font-light"
+                  >north_east</span
+                >
+              </div>
+              <div class="absolute bottom-10 left-10 space-y-2">
+                <span
+                  class="text-[10px] font-bold tracking-[0.3em] uppercase text-primary"
+                  >Commercial</span
+                >
+                <h3
+                  class="text-4xl font-display font-bold uppercase tracking-tighter"
+                >
+                  Taste of Heritage
+                </h3>
+              </div>
+            </div>
+            <div
+              class="col-span-12 md:col-span-6 lg:col-span-4 project-card group relative aspect-square overflow-hidden bg-charcoal"
+            >
+              <img
+                alt="Project"
+                class="project-image absolute inset-0 w-full h-full object-cover transition-transform duration-1000 grayscale group-hover:grayscale-0"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkx7IEaBS1X38Ru-BspUAj0PZDi3AopwEWTczTkYOpvsbjsU77QM26R6QcessKjVvoF31jFS1PjVlTpgUG2Xxv1tuojH-86DsNy1n7oOHWI-cYXy06nNoNIa_P4lrqX2o_oHPxakLLt7cVTIO6c6x5vge8w2fJne95JkfGZNGPc5L94-ucOhDvNOlnYyrjdjwlG6Cr0LOGrQ4v3CIreK_ZJN0CUp7fsO3VJstxIky0uSV1JjN9RuLxYItVP_10GE8Z_Cozw63PHz2Q"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60"
+              ></div>
+              <div
+                class="absolute top-8 right-8 project-arrow transition-transform duration-500"
+              >
+                <span
+                  class="material-symbols-outlined text-4xl text-primary font-light"
+                  >north_east</span
+                >
+              </div>
+              <div class="absolute bottom-10 left-10 space-y-2">
+                <span
+                  class="text-[10px] font-bold tracking-[0.3em] uppercase text-primary"
+                  >Storytelling</span
+                >
+                <h3
+                  class="text-3xl font-display font-bold uppercase tracking-tighter"
+                >
+                  Legacy Series
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-40 px-8 bg-black overflow-hidden" id="sobre">
+        <div
+          class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center"
+        >
+          <div class="lg:col-span-6 relative">
+            <div class="aspect-[4/5] overflow-hidden">
+              <img
+                alt="Studio"
+                class="w-full h-full object-cover grayscale brightness-75 transition-all duration-1000 hover:grayscale-0"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrswwsg-A3oefupwtsmoE94Awd3mWPC7bHUaH6erNWPi_CwjccrK0ymZQCGZbq4g8Lwan-_ru_86bHBBLUMWUsFDrXOl2AcZQ0tgeec4UsS0sCsSFXOIGODvvV32Ax1PSAJ6tJfPrJkNbXCAD9kwOb5pgrMYBKKyMxCRqCJohO9SmPsTZ--8RzNAaPa93bYI-KCauxRkiupmrdTRnrttoBF4ccLv9nS3iyNXv2cnh2yS7LgvVTVQDu69jrcF7beatfk81mCSMny7CR"
+              />
+            </div>
+            <div
+              class="absolute -right-8 lg:-right-16 top-1/2 -translate-y-1/2 w-4/5 lg:w-[120%] bg-black/40 backdrop-blur-xl p-12 border-l border-white/10"
+            >
+              <h4
+                class="text-primary font-display font-bold text-4xl lg:text-6xl uppercase leading-none tracking-tighter mb-8"
+              >
+                Nossa<br />Essência
+              </h4>
+              <p
+                class="text-lg text-white/70 leading-relaxed font-light mb-8 italic"
+              >
+                "Transformamos o efêmero em eterno. Na Ungant, não apenas
+                gravamos imagens, capturamos a alma de cada marca e a projetamos
+                em telas que inspiram o mundo."
+              </p>
+              <div class="space-y-4">
+                <p
+                  class="text-sm text-white/50 uppercase tracking-widest leading-loose"
+                >
+                  Somos uma produtora boutique focada na excelência técnica e na
+                  sensibilidade artística. Cada projeto é tratado como uma obra
+                  única, unindo a precisão do cinema com a agilidade da era
+                  digital.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-5 lg:col-start-8">
+            <div class="space-y-12">
+              <div class="grid grid-cols-1 gap-12">
+                <div class="pb-12 border-b border-white/5">
+                  <span
+                    class="text-7xl font-display font-bold text-white leading-none"
+                    >150<span class="text-primary">+</span></span
+                  >
+                  <p
+                    class="mt-4 text-[10px] font-bold uppercase tracking-[0.4em] text-white/40"
+                  >
+                    Projetos Executados
+                  </p>
+                </div>
+                <div class="pb-12 border-b border-white/5">
+                  <span
+                    class="text-7xl font-display font-bold text-white leading-none"
+                    >12</span
+                  >
+                  <p
+                    class="mt-4 text-[10px] font-bold uppercase tracking-[0.4em] text-white/40"
+                  >
+                    Países Atendidos
+                  </p>
+                </div>
+                <div>
+                  <span
+                    class="text-7xl font-display font-bold text-white leading-none"
+                    >08</span
+                  >
+                  <p
+                    class="mt-4 text-[10px] font-bold uppercase tracking-[0.4em] text-white/40"
+                  >
+                    Prêmios de Produção
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="relative py-40 px-8 bg-charcoal overflow-hidden"
+        id="contato"
+      >
+        <div
+          class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none select-none"
+        >
+          <span
+            class="outline-text text-[25vw] font-display font-black uppercase tracking-tighter whitespace-nowrap"
+            >ALGO NOVO</span
+          >
+        </div>
+        <div class="relative z-10 max-w-5xl mx-auto text-center space-y-16">
+          <h2
+            class="text-5xl md:text-9xl font-display font-bold tracking-tighter uppercase leading-none"
+          >
+            Vamos criar <br /><span class="text-primary italic"
+              >algo novo?</span
+            >
+          </h2>
+          <div
+            class="flex flex-col md:flex-row items-center justify-center gap-8"
+          >
+            <a
+              class="group w-full md:w-auto px-16 py-6 bg-primary text-white font-bold tracking-[0.3em] uppercase text-xs hover:bg-white hover:text-black transition-all duration-500 flex items-center justify-center gap-4"
+              href="mailto:contato@ungant.com"
+            >
+              Solicitar Orçamento
+              <span
+                class="material-symbols-outlined group-hover:translate-x-2 transition-transform"
+                >arrow_forward</span
+              >
+            </a>
+            <a
+              class="glass-btn w-full md:w-auto px-16 py-6 text-white font-bold tracking-[0.3em] uppercase text-xs hover:bg-white/10 transition-all duration-500 flex items-center justify-center gap-4"
+              href="#"
+            >
+              WhatsApp
+              <span class="material-symbols-outlined">chat_bubble</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="bg-black border-t border-white/5 py-20 px-8">
+      <div class="max-w-[1800px] mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+          <div class="md:col-span-2">
+            <div class="flex items-center gap-4 mb-8">
+              <div class="w-8 h-8 bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-lg"
+                  >videocam</span
+                >
+              </div>
+              <span
+                class="font-black text-2xl tracking-tighter uppercase font-display"
+                >UNGANT</span
+              >
+            </div>
+            <p
+              class="text-white/40 max-w-xs text-sm leading-relaxed uppercase tracking-widest"
+            >
+              Elevando o padrão da produção audiovisual através da inovação
+              constante.
+            </p>
+          </div>
+          <div class="space-y-6">
+            <span
+              class="text-[10px] font-bold tracking-[0.3em] text-primary uppercase"
+              >Navegação</span
+            >
+            <ul class="space-y-4 text-xs font-bold tracking-widest uppercase">
+              <li>
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Portfólio</a
+                >
+              </li>
+              <li>
+                <a class="hover:text-primary transition-colors" href="#"
+                  >O Estúdio</a
+                >
+              </li>
+              <li>
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Carreiras</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="space-y-6">
+            <span
+              class="text-[10px] font-bold tracking-[0.3em] text-primary uppercase"
+              >Social</span
+            >
+            <ul class="space-y-4 text-xs font-bold tracking-widest uppercase">
+              <li>
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Instagram</a
+                >
+              </li>
+              <li>
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Vimeo</a
+                >
+              </li>
+              <li>
+                <a class="hover:text-primary transition-colors" href="#"
+                  >LinkedIn</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-8 pt-12 border-t border-white/5"
+        >
+          <p
+            class="text-[10px] font-bold tracking-[0.3em] text-white/20 uppercase"
+          >
+            © 2024 UNGANT MEDIA. ALL RIGHTS RESERVED.
+          </p>
+          <div
+            class="flex gap-12 text-[10px] font-bold tracking-[0.3em] text-white/20 uppercase"
+          >
+            <a class="hover:text-white" href="#">Privacy Policy</a>
+            <a class="hover:text-white" href="#">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
