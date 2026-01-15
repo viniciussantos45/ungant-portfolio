@@ -57,13 +57,48 @@ interface GalleryTabsProps {
 }
 
 export function GalleryTabs({ videos, images, lives = [] }: GalleryTabsProps) {
-  const [activeTab, setActiveTab] = useState(() => {
-    // Set default tab to the first one with content
+  const getInitialTab = () => {
+    // Check URL for filter parameter
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const filter = params.get("filter");
+
+      // Map filter values to tab IDs
+      if (filter === "videos" && videos.length > 0) return "videos";
+      if (filter === "fotos" && images.length > 0) return "photos";
+      if (filter === "lives" && lives.length > 0) return "lives";
+    }
+
+    // Default to first tab with content
     if (videos.length > 0) return "videos";
     if (images.length > 0) return "photos";
     if (lives.length > 0) return "lives";
     return "videos";
-  });
+  };
+
+  const [activeTab, setActiveTab] = useState(getInitialTab);
+
+  // Update URL when tab changes
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      const filterMap: Record<string, string> = {
+        videos: "videos",
+        photos: "fotos",
+        lives: "lives",
+      };
+
+      const filterValue = filterMap[tabId];
+      if (filterValue) {
+        url.searchParams.set("filter", filterValue);
+      } else {
+        url.searchParams.delete("filter");
+      }
+      window.history.replaceState({}, "", url.toString());
+    }
+  };
 
   const tabs: TabItem[] = [
     { id: "videos", label: "Vídeos", count: videos.length },
@@ -76,7 +111,7 @@ export function GalleryTabs({ videos, images, lives = [] }: GalleryTabsProps) {
       className="animate-fadeInUp opacity-0"
       style={{ animationDelay: "0.5s" }}
     >
-      <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
+      <Tabs tabs={tabs} activeTab={activeTab} onTabChange={handleTabChange} />
 
       <div className="min-h-[400px]">
         {activeTab === "videos" && (

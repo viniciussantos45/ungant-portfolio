@@ -10,7 +10,6 @@ import "lightgallery/css/lightgallery.css";
 import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgVideo from "lightgallery/plugins/video";
 import lgZoom from "lightgallery/plugins/zoom";
-import Carousel from "./carousel";
 
 interface LiveGalleryProps {
   lives: {
@@ -39,11 +38,8 @@ export default function LivesGallery({ lives }: LiveGalleryProps) {
         plugins={[lgThumbnail, lgZoom, lgVideo]}
         selector=".live-gallery-item"
       >
-        <Carousel
-          options={{
-            slidesToScroll: 3,
-          }}
-          slides={lives.map((live, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {lives.map((live, index) => (
             <a
               key={`${live.src}-${index}`}
               className="live-gallery-item cursor-pointer block rounded-lg overflow-hidden aspect-video bg-gray-100 hover:shadow-lg transition-shadow duration-200 relative group"
@@ -71,7 +67,7 @@ export default function LivesGallery({ lives }: LiveGalleryProps) {
               </div>
             </a>
           ))}
-        />
+        </div>
       </LightGallery>
     </div>
   );

@@ -10,7 +10,6 @@ import "lightgallery/css/lightgallery.css";
 import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgVideo from "lightgallery/plugins/video";
 import lgZoom from "lightgallery/plugins/zoom";
-import Carousel from "./carousel";
 
 interface VideoGalleryProps {
   videos: {
@@ -39,12 +38,8 @@ export default function VideosGallery({ videos }: VideoGalleryProps) {
         plugins={[lgThumbnail, lgZoom, lgVideo]}
         selector=".video-gallery-item"
       >
-        {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"> */}
-        <Carousel
-          options={{
-            slidesToScroll: 3,
-          }}
-          slides={videos.map((video, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {videos.map((video, index) => (
             <a
               key={`${video.src}-${index}`}
               className="video-gallery-item cursor-pointer block rounded-lg overflow-hidden aspect-video bg-gray-100 hover:shadow-lg transition-shadow duration-200 relative group"
@@ -73,8 +68,7 @@ export default function VideosGallery({ videos }: VideoGalleryProps) {
               </div>
             </a>
           ))}
-        />
-        {/* </div> */}
+        </div>
       </LightGallery>
     </div>
   );

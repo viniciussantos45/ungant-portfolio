@@ -6,9 +6,22 @@ interface ProjectCardProps {
   variant?: "tall" | "wide" | "square";
 }
 
-export default function ProjectCard({ item, index, variant = "square" }: ProjectCardProps) {
+export default function ProjectCard({
+  item,
+  index,
+  variant = "square",
+}: ProjectCardProps) {
   const handleClick = () => {
-    window.location.href = `/gallery/${item.id}`;
+    // Preserve filter parameter from current URL
+    const currentParams = new URLSearchParams(window.location.search);
+    const filter = currentParams.get("filter");
+
+    const url = `/gallery/${item.id}`;
+    if (filter) {
+      window.location.href = `${url}?filter=${filter}`;
+    } else {
+      window.location.href = url;
+    }
   };
 
   // Determine aspect ratio based on variant
@@ -26,17 +39,25 @@ export default function ProjectCard({ item, index, variant = "square" }: Project
   }[variant];
 
   // Get category from first video or default
-  const category = item.title.includes("AFTERMOVIE") ? "Aftermovie" :
-                   item.title.includes("CORPORATIVO") ? "Corporate" :
-                   item.title.includes("FASHION") ? "Fashion Film" :
-                   item.title.includes("HEINZ") ? "Commercial" :
-                   item.title.includes("CHEVROLET") ? "Campaign" :
-                   "Storytelling";
+  const category = item.title.includes("AFTERMOVIE")
+    ? "Aftermovie"
+    : item.title.includes("CORPORATIVO")
+    ? "Corporate"
+    : item.title.includes("FASHION")
+    ? "Fashion Film"
+    : item.title.includes("HEINZ")
+    ? "Commercial"
+    : item.title.includes("CHEVROLET")
+    ? "Campaign"
+    : "Storytelling";
 
   return (
     <div
       className={`${gridClass} project-card group relative ${aspectClass} overflow-hidden bg-charcoal cursor-pointer animate-fadeInUp opacity-0`}
-      style={{ animationDelay: `${index * 0.1}s`, animationFillMode: "forwards" }}
+      style={{
+        animationDelay: `${index * 0.1}s`,
+        animationFillMode: "forwards",
+      }}
       onClick={handleClick}
     >
       {/* Image with Grayscale Effect */}
@@ -61,7 +82,13 @@ export default function ProjectCard({ item, index, variant = "square" }: Project
         <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-primary block">
           {category}
         </span>
-        <h3 className={`font-display font-bold uppercase tracking-tighter leading-tight ${variant === "square" ? "text-2xl md:text-3xl" : "text-3xl md:text-4xl"}`}>
+        <h3
+          className={`font-display font-bold uppercase tracking-tighter leading-tight ${
+            variant === "square"
+              ? "text-2xl md:text-3xl"
+              : "text-3xl md:text-4xl"
+          }`}
+        >
           {item.title}
         </h3>
       </div>
@@ -71,13 +98,17 @@ export default function ProjectCard({ item, index, variant = "square" }: Project
         <div className="absolute top-6 left-6 md:top-8 md:left-8 flex gap-3">
           {item.videos.length > 0 && (
             <div className="flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-white/60">
-              <span className="material-symbols-outlined text-sm">videocam</span>
+              <span className="material-symbols-outlined text-sm">
+                videocam
+              </span>
               <span>{item.videos.length}</span>
             </div>
           )}
           {item.photos.length > 0 && (
             <div className="flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-white/60">
-              <span className="material-symbols-outlined text-sm">photo_camera</span>
+              <span className="material-symbols-outlined text-sm">
+                photo_camera
+              </span>
               <span>{item.photos.length}</span>
             </div>
           )}

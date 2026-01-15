@@ -9,15 +9,25 @@ type FilterType = "all" | "fotos" | "videos" | "lives";
 export default function ProjectShowcase() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
 
+  // Handle filter change with URL update
+  const handleFilterChange = (filter: FilterType) => {
+    setActiveFilter(filter);
+    // Update URL without navigation
+    const url = new URL(window.location.href);
+    if (filter === "all") {
+      url.searchParams.delete("filter");
+    } else {
+      url.searchParams.set("filter", filter);
+    }
+    window.history.replaceState({}, "", url.toString());
+  };
+
   // Filter projects based on content type
   const filteredItems = projectItems.filter((item) => {
     if (activeFilter === "all") return true;
     if (activeFilter === "fotos") return item.photos.length > 0;
     if (activeFilter === "videos") return item.videos.length > 0;
-    if (activeFilter === "lives") {
-      // Add logic for lives if needed (e.g., check subtitle or a future field)
-      return false;
-    }
+    if (activeFilter === "lives") return (item.lives?.length || 0) > 0;
     return true;
   });
 
@@ -39,7 +49,7 @@ export default function ProjectShowcase() {
           {/* Filter Buttons */}
           <div className="flex gap-4">
             <button
-              onClick={() => setActiveFilter("all")}
+              onClick={() => handleFilterChange("all")}
               className={`text-[10px] font-bold tracking-widest uppercase pb-2 transition-colors ${
                 activeFilter === "all"
                   ? "border-b border-primary text-white"
@@ -49,7 +59,7 @@ export default function ProjectShowcase() {
               Todos
             </button>
             <button
-              onClick={() => setActiveFilter("fotos")}
+              onClick={() => handleFilterChange("fotos")}
               className={`text-[10px] font-bold tracking-widest uppercase pb-2 transition-colors ${
                 activeFilter === "fotos"
                   ? "border-b border-primary text-white"
@@ -59,7 +69,7 @@ export default function ProjectShowcase() {
               Fotos
             </button>
             <button
-              onClick={() => setActiveFilter("videos")}
+              onClick={() => handleFilterChange("videos")}
               className={`text-[10px] font-bold tracking-widest uppercase pb-2 transition-colors ${
                 activeFilter === "videos"
                   ? "border-b border-primary text-white"
@@ -69,7 +79,7 @@ export default function ProjectShowcase() {
               Videos
             </button>
             <button
-              onClick={() => setActiveFilter("lives")}
+              onClick={() => handleFilterChange("lives")}
               className={`text-[10px] font-bold tracking-widest uppercase pb-2 transition-colors ${
                 activeFilter === "lives"
                   ? "border-b border-primary text-white"
