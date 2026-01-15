@@ -14,7 +14,7 @@ export default function ProjectCard({ item, index, variant = "square" }: Project
   // Determine aspect ratio based on variant
   const aspectClass = {
     tall: "aspect-[3/4]",
-    wide: "aspect-[16/9] lg:aspect-auto",
+    wide: "aspect-[16/9]",
     square: "aspect-square",
   }[variant];
 
@@ -50,25 +50,25 @@ export default function ProjectCard({ item, index, variant = "square" }: Project
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
 
       {/* Arrow Icon */}
-      <div className="absolute top-8 right-8 project-arrow transition-transform duration-500">
-        <span className="material-symbols-outlined text-4xl text-primary font-light">
+      <div className="absolute top-6 right-6 md:top-8 md:right-8 project-arrow transition-transform duration-500">
+        <span className="material-symbols-outlined text-3xl md:text-4xl text-primary font-light">
           north_east
         </span>
       </div>
 
       {/* Content */}
-      <div className="absolute bottom-10 left-10 space-y-2">
-        <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-primary">
+      <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 space-y-2">
+        <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-primary block">
           {category}
         </span>
-        <h3 className={`font-display font-bold uppercase tracking-tighter ${variant === "square" ? "text-3xl" : "text-4xl"}`}>
+        <h3 className={`font-display font-bold uppercase tracking-tighter leading-tight ${variant === "square" ? "text-2xl md:text-3xl" : "text-3xl md:text-4xl"}`}>
           {item.title}
         </h3>
       </div>
 
       {/* Media Count Badge */}
       {(item.videos.length > 0 || item.photos.length > 0) && (
-        <div className="absolute top-8 left-8 flex gap-3">
+        <div className="absolute top-6 left-6 md:top-8 md:left-8 flex gap-3">
           {item.videos.length > 0 && (
             <div className="flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-white/60">
               <span className="material-symbols-outlined text-sm">videocam</span>
