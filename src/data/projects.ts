@@ -16,8 +16,8 @@ export const projectItems: ProjectItem[] = [
   {
     id: "aftermovie",
     title: "AFTERMOVIE",
-    description: "AFTERMOVIE - PROJECT DESCRIPTION",
-    subtitle: "AFTERMOVIE - PROJECT SUBTITLE",
+    description: "Captação e edição de aftermovies para eventos e festas",
+    subtitle: "Eventos & Festas",
     image:
       "https://r2-ungant.whitecommand.com/portfolio/projects_temporary/AFTERMOVIE/Co%CC%81pia%20de%20Co%CC%81pia%20de%20Senhor%20Boteco-thumb.jpg",
     videos: [
@@ -47,9 +47,9 @@ export const projectItems: ProjectItem[] = [
   },
   {
     id: "chevrolet",
-    title: "CHEVROLET ",
-    description: "CHEVROLET  - PROJECT DESCRIPTION",
-    subtitle: "CHEVROLET  - PROJECT SUBTITLE",
+    title: "CHEVROLET",
+    description: "Produção audiovisual para campanha Chevrolet",
+    subtitle: "Campanha Publicitária",
     image:
       "https://r2-ungant.whitecommand.com/portfolio/projects_temporary/CHEVROLET%20/MOF_SHORT_SUBTITLE-thumb.jpg",
     videos: [

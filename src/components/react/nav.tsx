@@ -1,4 +1,5 @@
 import { useState } from "react";
+import LogoOrange from "../../assets/logotipo-orange.svg";
 
 interface NavProps {
   currentPath?: string;
@@ -17,18 +18,15 @@ export default function Nav({ currentPath = "/" }: NavProps) {
   return (
     <>
       {/* Desktop Navigation */}
-      <header className="fixed top-0 w-full z-[100] px-8 py-6">
+      <header className="fixed top-0 w-full z-[100] px-8 py-6 bg-gradient-to-b from-black/80 via-black/40 to-transparent">
         <div className="max-w-[1800px] mx-auto flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-4 group">
-            <div className="w-8 h-8 bg-primary flex items-center justify-center">
-              <span className="material-symbols-outlined text-white text-lg">
-                videocam
-              </span>
-            </div>
-            <span className="font-black text-2xl tracking-tighter uppercase font-display">
-              UNGANT
-            </span>
+          <a href="/" className="flex items-center group">
+            <img
+              src={LogoOrange.src}
+              alt="Ungant"
+              className="h-6 md:h-7 transition-transform duration-300 group-hover:scale-105"
+            />
           </a>
 
           {/* Desktop Nav Links */}
@@ -79,16 +77,11 @@ export default function Nav({ currentPath = "/" }: NavProps) {
         <div className="fixed inset-0 flex flex-col justify-between p-8 bg-charcoal z-[200] animate-fadeInUp">
           {/* Header */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-8 h-8 bg-primary flex items-center justify-center">
-                <span className="material-symbols-outlined text-white text-lg">
-                  videocam
-                </span>
-              </div>
-              <span className="font-black text-2xl tracking-tighter uppercase font-display">
-                UNGANT
-              </span>
-            </div>
+            <img
+              src={LogoOrange.src}
+              alt="Ungant"
+              className="h-7"
+            />
             <button
               className="text-white hover:text-primary transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}

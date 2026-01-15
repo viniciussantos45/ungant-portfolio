@@ -1,24 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import ProjectGrid from "./ProjectGrid";
 import { projectItems } from "../../data/projects";
+import ProjectGrid from "./ProjectGrid";
 
-type FilterType = "all" | "comercial" | "evento";
+type FilterType = "all" | "fotos" | "videos" | "lives";
 
 export default function ProjectShowcase() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
 
-  // Filter projects based on category (you can customize the filtering logic)
+  // Filter projects based on content type
   const filteredItems = projectItems.filter((item) => {
     if (activeFilter === "all") return true;
-    if (activeFilter === "comercial") {
-      return item.title.includes("HEINZ") ||
-             item.title.includes("CHEVROLET") ||
-             item.title.includes("CORPORATIVO");
-    }
-    if (activeFilter === "evento") {
-      return item.title.includes("AFTERMOVIE");
+    if (activeFilter === "fotos") return item.photos.length > 0;
+    if (activeFilter === "videos") return item.videos.length > 0;
+    if (activeFilter === "lives") {
+      // Add logic for lives if needed (e.g., check subtitle or a future field)
+      return false;
     }
     return true;
   });
@@ -51,24 +49,34 @@ export default function ProjectShowcase() {
               Todos
             </button>
             <button
-              onClick={() => setActiveFilter("comercial")}
+              onClick={() => setActiveFilter("fotos")}
               className={`text-[10px] font-bold tracking-widest uppercase pb-2 transition-colors ${
-                activeFilter === "comercial"
+                activeFilter === "fotos"
                   ? "border-b border-primary text-white"
                   : "text-white/40 hover:text-white"
               }`}
             >
-              Comercial
+              Fotos
             </button>
             <button
-              onClick={() => setActiveFilter("evento")}
+              onClick={() => setActiveFilter("videos")}
               className={`text-[10px] font-bold tracking-widest uppercase pb-2 transition-colors ${
-                activeFilter === "evento"
+                activeFilter === "videos"
                   ? "border-b border-primary text-white"
                   : "text-white/40 hover:text-white"
               }`}
             >
-              Evento
+              Videos
+            </button>
+            <button
+              onClick={() => setActiveFilter("lives")}
+              className={`text-[10px] font-bold tracking-widest uppercase pb-2 transition-colors ${
+                activeFilter === "lives"
+                  ? "border-b border-primary text-white"
+                  : "text-white/40 hover:text-white"
+              }`}
+            >
+              Lives
             </button>
           </div>
         </div>
