@@ -10,6 +10,7 @@ export interface ProjectItem {
   image: string;
   videos: MediaItem[];
   photos: MediaItem[];
+  lives?: MediaItem[];
 }
 
 export const projectItems: ProjectItem[] = [
