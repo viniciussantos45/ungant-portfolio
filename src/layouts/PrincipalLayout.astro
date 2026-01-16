@@ -15,7 +15,7 @@ const currentPath = Astro.url.pathname;
     <Nav client:load currentPath={currentPath} />
     <div class:list={[
       "relative z-10",
-      { "pt-20 md:pt-24": !noPadding }
+      { "": !noPadding }
     ]}>
       <slot />
     </div>

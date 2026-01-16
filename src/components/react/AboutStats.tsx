@@ -56,7 +56,7 @@ export default function AboutStats() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
             whileHover={{ scale: 1.05, y: -5 }}
-            className="p-6  backdrop-blur-sm rounded-2xl border border-primary/10 hover:border-primary/30 transition-all cursor-pointer group"
+            className="p-6 border border-white/10 hover:border-primary/30 transition-all cursor-pointer group"
           >
             <stat.icon
               className={`w-10 h-10 ${stat.color} mb-4 group-hover:scale-110 transition-transform`}
@@ -65,7 +65,7 @@ export default function AboutStats() {
             <div className="text-3xl font-black text-primary mb-2">
               {stat.value}
             </div>
-            <div className="text-sm text-secondary/80">{stat.label}</div>
+            <div className="text-sm text-white/70">{stat.label}</div>
           </motion.div>
         ))}
       </motion.div>
@@ -76,23 +76,23 @@ export default function AboutStats() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="p-8  backdrop-blur-sm rounded-2xl border border-primary/10"
+        className="p-8 border border-white/10"
       >
-        <h3 className="text-2xl font-bold text-foreground mb-6">
+        <h3 className="text-[10px] font-bold tracking-[0.3em] uppercase text-primary mb-6">
           Nossa Expertise
         </h3>
         <div className="space-y-6">
           {skills.map((skill, index) => (
             <div key={skill.name}>
               <div className="flex justify-between mb-2">
-                <span className="text-sm font-semibold text-secondary">
+                <span className="text-sm font-semibold text-white">
                   {skill.name}
                 </span>
                 <span className="text-sm font-bold text-primary">
                   {skill.level}%
                 </span>
               </div>
-              <div className="h-2 bg-secondary/10 rounded-full overflow-hidden">
+              <div className="h-2 bg-white/10 overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: `${skill.level}%` }}
@@ -102,7 +102,7 @@ export default function AboutStats() {
                     delay: 0.6 + index * 0.1,
                     ease: "easeOut",
                   }}
-                  className="h-full bg-gradient-to-r from-primary to-primary/70 rounded-full"
+                  className="h-full bg-gradient-to-r from-primary to-primary/70"
                 />
               </div>
             </div>
@@ -117,15 +117,15 @@ export default function AboutStats() {
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.7 }}
         whileHover={{ scale: 1.02 }}
-        className="p-8 bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm rounded-2xl border border-primary/20 relative overflow-hidden group cursor-pointer"
+        className="p-8 bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 relative overflow-hidden group cursor-pointer"
       >
-        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full filter blur-2xl group-hover:blur-xl transition-all"></div>
+        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 filter blur-2xl group-hover:blur-xl transition-all"></div>
         <div className="relative z-10">
           <UsersIcon className="w-12 h-12 text-primary mb-4" weight="duotone" />
-          <h3 className="text-xl font-bold text-foreground mb-3">
+          <h3 className="text-[10px] font-bold tracking-[0.3em] uppercase text-primary mb-3">
             Destaque do Ano
           </h3>
-          <p className="text-secondary/90 leading-relaxed">
+          <p className="text-white/80 leading-relaxed">
             Reconhecidos como um dos estúdios mais inovadores em fotografia
             urbana contemporânea.
           </p>
@@ -138,16 +138,16 @@ export default function AboutStats() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.8 }}
-        className="text-center p-8  backdrop-blur-sm rounded-2xl border border-primary/10"
+        className="text-center p-8 border border-white/10"
       >
-        <p className="text-lg text-secondary mb-4">
+        <p className="text-lg text-white/70 mb-4">
           Pronto para criar algo incrível?
         </p>
         <motion.a
           href="/contato"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-black font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+          className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-black font-bold text-xs tracking-widest uppercase hover:bg-white transition-colors"
         >
           Entre em Contato
           <svg
