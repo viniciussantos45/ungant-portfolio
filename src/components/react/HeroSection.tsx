@@ -3,7 +3,9 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ backgroundImage }: HeroSectionProps) {
-  const bgImage = backgroundImage || "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2000&auto=format&fit=crop";
+  const bgImage =
+    backgroundImage ||
+    "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2000&auto=format&fit=crop";
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-charcoal">
@@ -27,23 +29,34 @@ export default function HeroSection({ backgroundImage }: HeroSectionProps) {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 max-w-6xl mx-auto px-8 w-full">
+      <div className="relative z-20 max-w-6xl mx-auto px-8 w-full  md:pt-20">
         <div className="space-y-6 max-w-3xl">
           {/* Tagline */}
-          <div className="flex items-center gap-4 text-primary font-bold tracking-[0.4em] uppercase text-xs mb-8 animate-fadeInUp" style={{ animationDelay: "0.1s" }}>
+          <div
+            className="flex items-center gap-4 text-primary font-bold tracking-[0.4em] uppercase text-xs mb-8 animate-fadeInUp"
+            style={{ animationDelay: "0.1s" }}
+          >
             <span className="w-12 h-px bg-primary" />
             <span>High-End Audiovisual</span>
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-6xl md:text-9xl font-display font-bold text-white leading-[0.9] tracking-tight uppercase animate-fadeInUp opacity-0" style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}>
-            Histórias<br />
-            visuais<br />
+          <h1
+            className="text-6xl md:text-9xl font-display font-bold text-white leading-[0.9] tracking-tight uppercase animate-fadeInUp opacity-0"
+            style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}
+          >
+            Histórias
+            <br />
+            visuais
+            <br />
             <span className="text-primary">poderosas</span>
           </h1>
 
           {/* CTA Buttons */}
-          <div className="pt-8 flex flex-col sm:flex-row gap-4 sm:gap-6 animate-fadeInUp opacity-0" style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}>
+          <div
+            className="pt-8 flex flex-col sm:flex-row gap-4 sm:gap-6 animate-fadeInUp opacity-0"
+            style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
+          >
             <a
               href="/projetos"
               className="bg-primary text-white px-8 py-4 text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300 text-center"
