@@ -38,7 +38,7 @@ export default function ImagesGallery({ images }: ImagesGalleryProps) {
           {images.map((image, index) => (
             <a
               key={`${image.src}-${index}`}
-              className="gallery-item cursor-pointer block rounded-lg overflow-hidden aspect-square bg-gray-100 hover:shadow-lg transition-shadow duration-200"
+              className="gallery-item cursor-pointer block overflow-hidden aspect-square bg-charcoal hover:shadow-xl transition-all duration-300"
               data-src={image.src}
               data-sub-html={`<h4>${image.title}</h4><p>${image.description}</p>`}
             >

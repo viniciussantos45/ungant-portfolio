@@ -52,7 +52,7 @@ export default function ProjectInfo({ project }: ProjectInfoProps) {
       {/* Project Details Card */}
       <motion.div
         whileHover={{ scale: 1.02 }}
-        className="p-6  backdrop-blur-sm rounded-2xl border border-primary/10"
+        className="p-6 backdrop-blur-sm border border-primary/10"
       >
         <h3 className="text-lg font-bold text-foreground mb-4">
           Detalhes do Projeto
@@ -66,7 +66,7 @@ export default function ProjectInfo({ project }: ProjectInfoProps) {
               transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
               className="flex items-center gap-4"
             >
-              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-primary/10 flex items-center justify-center">
                 <detail.icon
                   className="w-5 h-5 text-primary"
                   weight="duotone"
@@ -88,7 +88,7 @@ export default function ProjectInfo({ project }: ProjectInfoProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.9 }}
-        className="p-6  backdrop-blur-sm rounded-2xl border border-primary/10"
+        className="p-6 backdrop-blur-sm border border-primary/10"
       >
         <h3 className="text-lg font-bold text-foreground mb-4">Compartilhe</h3>
         <div className="flex gap-3">
@@ -96,7 +96,7 @@ export default function ProjectInfo({ project }: ProjectInfoProps) {
             href="#"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="w-10 h-10 bg-black/80 hover:bg-black backdrop-blur-sm flex items-center justify-center rounded-lg transition-colors"
+            className="w-10 h-10 bg-black/80 hover:bg-black backdrop-blur-sm flex items-center justify-center transition-colors"
             aria-label="Share on Facebook"
           >
             <svg
@@ -111,7 +111,7 @@ export default function ProjectInfo({ project }: ProjectInfoProps) {
             href="#"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="w-10 h-10 bg-black/80 hover:bg-black backdrop-blur-sm flex items-center justify-center rounded-lg transition-colors"
+            className="w-10 h-10 bg-black/80 hover:bg-black backdrop-blur-sm flex items-center justify-center transition-colors"
             aria-label="Share on Instagram"
           >
             <svg
@@ -127,7 +127,7 @@ export default function ProjectInfo({ project }: ProjectInfoProps) {
             href="#"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="w-10 h-10 bg-black/80 hover:bg-black backdrop-blur-sm flex items-center justify-center rounded-lg transition-colors"
+            className="w-10 h-10 bg-black/80 hover:bg-black backdrop-blur-sm flex items-center justify-center transition-colors"
             aria-label="Share on Twitter"
           >
             <svg
@@ -146,7 +146,7 @@ export default function ProjectInfo({ project }: ProjectInfoProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.0 }}
-        className="p-6 bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm rounded-2xl border border-primary/20 relative overflow-hidden group"
+        className="p-6 bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm border border-primary/20 relative overflow-hidden group"
       >
         <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full filter blur-2xl"></div>
         <div className="relative z-10">

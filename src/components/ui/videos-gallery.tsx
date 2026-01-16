@@ -42,7 +42,7 @@ export default function VideosGallery({ videos }: VideoGalleryProps) {
           {videos.map((video, index) => (
             <a
               key={`${video.src}-${index}`}
-              className="video-gallery-item cursor-pointer block rounded-lg overflow-hidden aspect-video bg-gray-100 hover:shadow-lg transition-shadow duration-200 relative group"
+              className="video-gallery-item cursor-pointer block overflow-hidden aspect-video bg-charcoal hover:shadow-xl transition-all duration-300 relative group"
               data-video={JSON.stringify({
                 source: [{ src: video.src, type: "video/mp4" }],
                 attributes: { preload: false, controls: true },
@@ -56,7 +56,7 @@ export default function VideosGallery({ videos }: VideoGalleryProps) {
               />
               {/* Play button overlay */}
               <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors duration-200">
-                <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 bg-white/90 flex items-center justify-center">
                   <svg
                     className="w-8 h-8 text-gray-800 ml-1"
                     fill="currentColor"
