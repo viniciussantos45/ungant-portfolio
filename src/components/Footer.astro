@@ -1,0 +1,167 @@
+---
+import {
+EnvelopeIcon,
+InstagramLogoIcon,
+LinkedinLogoIcon,
+MapPinIcon,
+PhoneIcon,
+} from "@phosphor-icons/react";
+---
+
+<footer class="bg-black border-t border-white/10">
+  <div class="max-w-[1800px] mx-auto px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+      <!-- Brand Section -->
+      <div class="space-y-6">
+        <h3
+          class="text-2xl font-display font-bold uppercase tracking-tighter text-primary"
+        >
+          UNGANT
+        </h3>
+        <p class="text-white/70 text-sm leading-relaxed">
+          Transformando momentos em narrativas visuais poderosas através de
+          fotografia e vídeo.
+        </p>
+        <!-- Social Media -->
+        <div class="flex gap-3">
+          <a
+            href="https://instagram.com/ungantmedia"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-3 bg-primary/10 hover:bg-primary text-primary hover:text-black transition-all group"
+            aria-label="Instagram"
+          >
+            <InstagramLogoIcon
+              className="w-5 h-5 group-hover:scale-110 transition-transform"
+              weight="duotone"
+            />
+          </a>
+          <a
+            href="https://linkedin.com/company/ungant"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-3 bg-primary/10 hover:bg-primary text-primary hover:text-black transition-all group"
+            aria-label="LinkedIn"
+          >
+            <LinkedinLogoIcon
+              className="w-5 h-5 group-hover:scale-110 transition-transform"
+              weight="duotone"
+            />
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="space-y-6">
+        <h4 class="text-[10px] font-bold tracking-widest uppercase text-primary">
+          Links Rápidos
+        </h4>
+        <ul class="space-y-3">
+          <li>
+            <a
+              href="/"
+              class="text-white/70 hover:text-primary transition-colors text-sm"
+            >
+              Início
+            </a>
+          </li>
+          <li>
+            <a
+              href="/sobre-nos"
+              class="text-white/70 hover:text-primary transition-colors text-sm"
+            >
+              Sobre Nós
+            </a>
+          </li>
+          <li>
+            <a
+              href="/projetos"
+              class="text-white/70 hover:text-primary transition-colors text-sm"
+            >
+              Projetos
+            </a>
+          </li>
+          <li>
+            <a
+              href="/contato"
+              class="text-white/70 hover:text-primary transition-colors text-sm"
+            >
+              Contato
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="space-y-6">
+        <h4 class="text-[10px] font-bold tracking-widest uppercase text-primary">
+          Serviços
+        </h4>
+        <ul class="space-y-3">
+          <li>
+            <span class="text-white/70 text-sm">Fotografia Comercial</span>
+          </li>
+          <li>
+            <span class="text-white/70 text-sm">Produção de Vídeo</span>
+          </li>
+          <li>
+            <span class="text-white/70 text-sm">Fotografia Urbana</span>
+          </li>
+          <li>
+            <span class="text-white/70 text-sm">Lives & Podcasts</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="space-y-6">
+        <h4 class="text-[10px] font-bold tracking-widest uppercase text-primary">
+          Contato
+        </h4>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <EnvelopeIcon className="w-5 h-5 text-primary flex-shrink-0" weight="duotone" />
+            <a
+              href="mailto:contato@ungant.com"
+              class="text-white/70 hover:text-primary transition-colors text-sm"
+            >
+              contato@ungant.com
+            </a>
+          </li>
+          <li class="flex items-start gap-3">
+            <PhoneIcon className="w-5 h-5 text-primary flex-shrink-0" weight="duotone" />
+            <a
+              href="tel:+5511999999999"
+              class="text-white/70 hover:text-primary transition-colors text-sm"
+            >
+              +55 (11) 99999-9999
+            </a>
+          </li>
+          <li class="flex items-start gap-3">
+            <MapPinIcon className="w-5 h-5 text-primary flex-shrink-0" weight="duotone" />
+            <span class="text-white/70 text-sm">
+              São Paulo, SP<br />Brasil
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div
+      class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4"
+    >
+      <p class="text-white/50 text-xs">
+        © {new Date().getFullYear()} UNGANT. Todos os direitos reservados.
+      </p>
+      <div class="flex gap-6 text-xs">
+        <a href="#" class="text-white/50 hover:text-primary transition-colors">
+          Política de Privacidade
+        </a>
+        <a href="#" class="text-white/50 hover:text-primary transition-colors">
+          Termos de Uso
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

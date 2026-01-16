@@ -1,4 +1,5 @@
 ---
+import Footer from "../components/Footer.astro";
 import Nav from "../components/react/nav";
 import Layout from "./Layout.astro";
 
@@ -11,13 +12,14 @@ const currentPath = Astro.url.pathname;
 ---
 
 <Layout>
-  <div class="min-h-screen relative">
+  <div class="min-h-screen relative flex flex-col">
     <Nav client:load currentPath={currentPath} />
     <div class:list={[
-      "relative z-10",
+      "relative z-10 flex-grow",
       { "": !noPadding }
     ]}>
       <slot />
     </div>
+    <Footer />
   </div>
 </Layout>
